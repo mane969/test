@@ -1,0 +1,59 @@
+/* src/components/Navbar.css */
+
+.navbar {
+    position: fixed; /* stick to viewport */
+    top: 0; /* top-left corner */
+    left: 0; /* top-left corner */
+    width: 100vw; /* full viewport width */
+    z-index: 1000; /* above other content */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+    .navbar-links li {
+        margin-left: 20px;
+    }
+
+    .navbar-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+
+        .navbar-links a:hover {
+            text-decoration: underline;
+        }
+/* Add these new styles to the end of the file */
+
+.navbar-logo {
+    height: 60px; /* Adjust this value to make your logo bigger or smaller */
+    width: auto; /* This maintains the aspect ratio */
+    vertical-align: middle; /* Helps align the logo nicely with the nav links */
+}
+
+/* You may need to adjust the font-size here if you keep it */
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* This ensures the link container doesn't have extra space */
+    line-height: 1;
+}
