@@ -1,7 +1,7 @@
 .featured-products-section {
     padding: 4rem 2rem; /* Add padding to the top/bottom and sides */
     text-align: center;
-    background-color: #f9f9f9; /* A very light grey background to separate from other sections */
+    background-color: transparent; /* A very light grey background to separate from other sections */
 }
 
 .section-title {

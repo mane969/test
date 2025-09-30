@@ -3,12 +3,12 @@
     text-align: center;
 }
 
-/* This new class will hold our content container styles */
 .main-content {
+    position: relative; /* Add this */
+    z-index: 2; /* Add this */
     max-width: 1280px;
     margin: 0 auto;
 }
-
 .logo {
     height: 6em;
     padding: 1.5em;

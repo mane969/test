@@ -1,19 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
     return (
-        <div className="hero-container">
+        <section className="hero">
             <div className="hero-content">
-                {/* Update the heading here */}
-                <h1>Welcome to Delicia</h1>
-                <p>Freshly baked goods, made with love, just for you.</p>
-                <Link to="/products">
-                    <button className="hero-button">View Our Products</button>
-                </Link>
+                <img src="/images/logo.png" alt="Delicia Bakery Logo" className="hero-logo" />
+                <h1 className="hero-title">
+                    Welcome to <span className="highlight">Delicia</span>
+                </h1>
+                <p className="hero-subtitle">
+                    Freshly baked <span>cakes</span>, <span>pies</span> &amp; <span>pastries</span>,
+                    crafted with love — just for you.
+                </p>
+                <div className="hero-buttons">
+                    <button className="btn-primary">Order Now</button>
+                    <button className="btn-secondary">Explore Menu</button>
+                </div>
             </div>
-        </div>
+        </section>
     );
 };
 

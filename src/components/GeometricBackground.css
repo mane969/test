@@ -1,0 +1,169 @@
+.geometric-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    background-color: #FFFBF5; /* soft cream background from logo */
+}
+
+.blob {
+    position: absolute;
+    opacity: 0.45;
+    filter: blur(30px);
+    mix-blend-mode: multiply;
+}
+
+/* --- Blobs with different brand colors --- */
+
+.blob1 {
+    width: 480px;
+    height: 480px;
+    top: 5%;
+    left: 8%;
+    background: linear-gradient(135deg, #FF9A8B, #FF6A88);
+    animation: morph1 3s ease-in-out infinite alternate; /* FAST */
+}
+
+.blob2 {
+    width: 550px;
+    height: 550px;
+    top: 30%;
+    left: 55%;
+    background: linear-gradient(135deg, #FFDADA, #FF9A8B);
+    animation: morph2 7s ease-in-out infinite alternate; /* SLOW */
+}
+
+.blob3 {
+    width: 420px;
+    height: 420px;
+    top: 55%;
+    left: 20%;
+    background: linear-gradient(135deg, #FFB77C, #FFD5A5);
+    animation: morph3 5.5s ease-in-out infinite alternate; /* MEDIUM */
+}
+
+.blob4 {
+    width: 500px;
+    height: 500px;
+    top: 15%;
+    left: 70%;
+    background: linear-gradient(135deg, #A7D8D6, #8CCBC6);
+    animation: morph4 10s ease-in-out infinite alternate; /* VERY SLOW */
+}
+
+.blob5 {
+    width: 350px;
+    height: 350px;
+    top: 65%;
+    left: 75%;
+    background: linear-gradient(135deg, #E9C9A1, #F5E0C5);
+    animation: morph5 4s ease-in-out infinite alternate; /* FAST */
+}
+
+.blob6 {
+    width: 300px;
+    height: 300px;
+    top: 40%;
+    left: 35%;
+    background: linear-gradient(135deg, #FFD5A5, #FFB77C);
+    animation: morph6 6s ease-in-out infinite alternate; /* MEDIUM */
+}
+.blob7 {
+    width: 600px;
+    height: 600px;
+    bottom: -10%; /* anchored at bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #FF9A8B, #FFD5A5); /* warm peach-pink */
+    animation: morph7 9s ease-in-out infinite alternate; /* slow dreamy */
+    opacity: 0.4;
+}
+
+@keyframes morph7 {
+    from {
+        transform: translateX(-50%) translateY(0) scale(1);
+        border-radius: 50% 50% 60% 40% / 40% 60% 40% 60%;
+    }
+
+    to {
+        transform: translateX(-50%) translateY(-40px) scale(1.1);
+        border-radius: 70% 30% 40% 60% / 60% 40% 70% 30%;
+    }
+}
+
+/* --- Keyframes for organic morphing --- */
+
+@keyframes morph1 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    }
+
+    to {
+        transform: translate(80px,-80px) scale(1.1);
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+@keyframes morph2 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 30% 70% 60% 40% / 50% 60% 40% 50%;
+    }
+
+    to {
+        transform: translate(-70px,90px) scale(0.95);
+        border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%;
+    }
+}
+
+@keyframes morph3 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 60% 40% 70% 30% / 40% 60% 50% 50%;
+    }
+
+    to {
+        transform: translate(100px,60px) scale(1.05);
+        border-radius: 40% 60% 30% 70% / 60% 40% 70% 30%;
+    }
+}
+
+@keyframes morph4 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 50% 50% 60% 40% / 40% 60% 40% 60%;
+    }
+
+    to {
+        transform: translate(-90px,-50px) scale(1.1);
+        border-radius: 30% 70% 50% 50% / 70% 30% 60% 40%;
+    }
+}
+
+@keyframes morph5 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 45% 55% 65% 35% / 55% 45% 65% 35%;
+    }
+
+    to {
+        transform: translate(60px,100px) scale(1.1);
+        border-radius: 65% 35% 45% 55% / 35% 65% 45% 55%;
+    }
+}
+
+@keyframes morph6 {
+    from {
+        transform: translate(0,0) scale(1);
+        border-radius: 50% 50% 70% 30% / 60% 40% 50% 50%;
+    }
+
+    to {
+        transform: translate(-50px,80px) scale(1.15);
+        border-radius: 70% 30% 40% 60% / 50% 70% 30% 50%;
+    }
+}

@@ -1,0 +1,4 @@
+.homepage-wrapper {
+    position: relative; /* This is essential for positioning the background */
+    overflow: hidden; /* Prevents shapes from spilling out */
+}
