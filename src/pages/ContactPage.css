@@ -177,7 +177,10 @@
     -webkit-appearance: none; /* for Chrome, Safari, etc. */
     -moz-appearance: none; /* for Firefox */
     appearance: none;
+<<<<<<< Updated upstream
     border: 2px solid #E9C9A1;
+=======
+>>>>>>> Stashed changes
     
     /* 2. Add our custom arrow */
     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23C68C4A%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-13z%22%2F%3E%3C%2Fsvg%3E');
@@ -188,9 +191,13 @@
 }
 
 /* 3. Style the focus state with brand colors */
+<<<<<<< Updated upstream
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
+=======
+.contact-form select:focus {
+>>>>>>> Stashed changes
     outline: none; /* Remove the default blue outline */
     border-color: #C68C4A; /* Use your primary brand color for the border */
     box-shadow: 0 0 0 3px rgba(198, 140, 74, 0.25); /* Add a soft "glow" with your brand color */
