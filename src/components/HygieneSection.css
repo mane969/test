@@ -15,6 +15,7 @@
 }
 
     .hygiene-content h2 {
+        font-family: 'Playfair Display', serif;
         font-size: 2.8rem;
         font-weight: 700;
         color: #333;
@@ -23,6 +24,7 @@
     }
 
     .hygiene-content p {
+        font-family: 'Nunito', sans-serif;
         font-size: 1.1rem;
         color: #666;
         line-height: 1.8;
@@ -39,6 +41,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    font-family: 'Nunito', sans-serif;
     font-size: 1rem;
     font-weight: 500;
     color: #444;
@@ -46,18 +49,38 @@
 
     .standard-item svg {
         color: #ff6a88;
+        flex-shrink: 0;
     }
 
-.hygiene-image {
+/* --- SLIDESHOW STYLES --- */
+.hygiene-image-slider {
     flex: 1;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    aspect-ratio: 4 / 3; /* Maintains a consistent shape */
 }
 
-    .hygiene-image img {
-        width: 100%;
-        border-radius: 16px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out; /* Smooth fade transition */
+    z-index: 1; /* Default layer */
+}
+
+    .slide.active {
+        opacity: 1; /* Makes the current slide visible */
+        z-index: 2; /* Active slide is layered on top for a smooth cross-fade */
     }
 
+
+/* --- RESPONSIVE STYLES --- */
 @media (max-width: 768px) {
     .hygiene-section {
         flex-direction: column;

@@ -1,18 +1,21 @@
 .featured-products-section {
-    padding: 4rem 2rem; /* Add padding to the top/bottom and sides */
+    padding: 4rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.featured-products-title {
     text-align: center;
-    background-color: transparent; /* A very light grey background to separate from other sections */
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
     color: #333;
+    margin-bottom: 3rem;
 }
 
-.products-grid {
-    display: flex;
-    justify-content: center;
+.featured-products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
-    flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
+    max-width: 1200px;
+    margin: 0 auto;
 }

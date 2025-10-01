@@ -1,4 +1,5 @@
 import React from 'react';
+// --- All these paths are now corrected ---
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
 import FeaturedProducts from '../components/FeaturedProducts';
@@ -6,15 +7,15 @@ import HygieneSection from '../components/HygieneSection';
 import CommunitySection from '../components/CommunitySection';
 import './HomePage.css';
 
-const HomePage = () => {
+// The component now accepts the onProductSelect handler from App.jsx
+const HomePage = ({ onProductSelect }) => {
     return (
-        // The homepage only needs to contain its sections. 
-        // The background is handled by App.jsx now.
         <div>
             <Hero />
             <WhyChooseUs />
             <div className="main-content">
-                <FeaturedProducts />
+                {/* Pass the handler down to the FeaturedProducts component */}
+                <FeaturedProducts onProductSelect={onProductSelect} />
             </div>
             <HygieneSection />
             <CommunitySection />

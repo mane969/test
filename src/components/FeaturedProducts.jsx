@@ -1,20 +1,24 @@
 import React from 'react';
+import { productsData } from '../data/products'; // Assuming your product data is here
 import ProductCard from './ProductCard';
-import { productsData } from '../data/products'; // 1. Import from the new data file
 import './FeaturedProducts.css';
 
-// 2. We can now delete the old `featuredProductsData` array from this file.
-
-const FeaturedProducts = () => {
-    // We can slice the array to only show the first 3 items as "featured"
+// It receives the onProductSelect handler from HomePage
+const FeaturedProducts = ({ onProductSelect }) => {
+    // Get the first 3 products to feature
     const featured = productsData.slice(0, 3);
 
     return (
         <section className="featured-products-section">
-            <h2 className="section-title">Our Featured Treats</h2>
-            <div className="products-grid">
+            <h2 className="featured-products-title">Our Featured Treats</h2>
+            <div className="featured-products-grid">
                 {featured.map(product => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard
+                        key={product.id}
+                        product={product}
+                        // Pass the handler to each card
+                        onCardClick={onProductSelect}
+                    />
                 ))}
             </div>
         </section>
