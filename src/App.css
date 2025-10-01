@@ -49,12 +49,27 @@
     color: #888;
 }
 
+/* In App.css */
+
+/* In App.css */
+
 .app-container {
-  position: relative;
+    position: relative; /* Keep this for positioning context */
 }
 
+/* In App.css */
+
 .content-wrapper {
-  position: relative;
-  z-index: 1; /* This is key to placing content ON TOP of the background */
-  padding-top: 90px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* This is the key for the sticky footer */
+    position: relative; /* Keep for z-index context */
+    z-index: 1; /* Keep content above the background */
+    padding-top: 90px;
+    box-sizing: border-box;
+}
+
+/* --- Add this new rule for the main content area --- */
+.main-page-content {
+    flex-grow: 1; /* This is the magic property! */
 }

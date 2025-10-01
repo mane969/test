@@ -1,5 +1,4 @@
 import React from 'react';
-// --- All these paths are now corrected ---
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
 import FeaturedProducts from '../components/FeaturedProducts';
@@ -7,14 +6,13 @@ import HygieneSection from '../components/HygieneSection';
 import CommunitySection from '../components/CommunitySection';
 import './HomePage.css';
 
-// The component now accepts the onProductSelect handler from App.jsx
 const HomePage = ({ onProductSelect }) => {
+    // The content is now wrapped in a single div to match the other pages' structure.
     return (
-        <div>
+        <div className="page-content-wrapper">
             <Hero />
             <WhyChooseUs />
             <div className="main-content">
-                {/* Pass the handler down to the FeaturedProducts component */}
                 <FeaturedProducts onProductSelect={onProductSelect} />
             </div>
             <HygieneSection />
@@ -24,4 +22,3 @@ const HomePage = ({ onProductSelect }) => {
 };
 
 export default HomePage;
-

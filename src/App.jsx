@@ -13,7 +13,6 @@ import './App.css';
 function App() {
     // State for the selected product is now managed here, at the top level
     const [selectedProduct, setSelectedProduct] = useState(null);
-
     const handleProductSelect = (product) => {
         setSelectedProduct(product);
     };
@@ -24,18 +23,21 @@ function App() {
 
     return (
         <div className="app-container">
-            <GeometricBackground />
+            <GeometricBackground /> 
+
 
             <div className="content-wrapper">
                 <Navbar />
-                <Routes>
-                    {/* Pass the handler down to the HomePage */}
-                    <Route path="/" element={<HomePage onProductSelect={handleProductSelect} />} />
-                    <Route path="/about" element={<AboutUs />} />
-                    {/* Pass the handler down to the ProductsPage */}
-                    <Route path="/products" element={<ProductsPage onProductSelect={handleProductSelect} />} />
-                    <Route path="/contact" element={<ContactPage />} />
-                </Routes>
+                <main className="main-page-content">
+                    <Routes>
+                        {/* Pass the handler down to the HomePage */}
+                        <Route path="/" element={<HomePage onProductSelect={handleProductSelect} />} />
+                        <Route path="/about" element={<AboutUs />} />
+                        {/* Pass the handler down to the ProductsPage */}
+                        <Route path="/products" element={<ProductsPage onProductSelect={handleProductSelect} />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                    </Routes>
+                </main>
                 <Footer />
             </div>
 
