@@ -1,5 +1,5 @@
 import React from 'react';
-import './ContactPage.css'; // We will create this file next
+import './ContactPage.css';
 
 const ContactPage = () => {
     return (
@@ -88,4 +88,3 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
-
