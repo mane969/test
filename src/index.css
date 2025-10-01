@@ -1,5 +1,10 @@
 /* src/index.css */
 
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@700&family=Playfair+Display:wght@700&display=swap');
+
+/* ... rest of your index.css file */
+
 html, body {
     margin: 0;
     padding: 0;

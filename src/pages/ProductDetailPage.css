@@ -1,0 +1,299 @@
+/* --- Import a new, attractive font for titles --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* --- MODAL OVERLAY --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(30, 20, 10, 0.5); /* Darker, warmer overlay */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+}
+
+/* --- MODAL CONTENT & OPENING ANIMATION --- */
+.modal-content {
+  background: linear-gradient(160deg, #FFFBF5 0%, #FAF5EF 100%);
+  width: 100%;
+  max-width: 1000px; /* Bigger modal */
+  height: 95%; /* Taller for more content */
+  max-height: 700px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  box-shadow: 0 -15px 60px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.modal-content.visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* --- CLOSE BUTTON --- */
+.modal-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: #5A3A28;
+  transition: all 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background: #fff;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MODAL BODY LAYOUT --- */
+.modal-body {
+  padding: 2rem;
+  display: flex;
+  width: 100%;
+  gap: 3rem;
+  overflow-y: auto;
+}
+
+/* Keyframe animation for staggered content fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- IMAGE AREA --- */
+.modal-image-area {
+  flex: 1.2; /* Give image slightly more space */
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.satisfaction-guarantee {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 30px;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #3E2E1F;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.heart-icon {
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+
+/* --- INFO AREA & TYPOGRAPHY --- */
+.modal-info-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  /* Apply staggered animation to each element */
+}
+
+.modal-info-area > * {
+  opacity: 0;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger the animation delay for each element */
+.modal-product-name { animation-delay: 0.4s; }
+.modal-product-tagline { animation-delay: 0.5s; }
+.modal-product-price { animation-delay: 0.6s; }
+.modal-product-description { animation-delay: 0.7s; }
+.modal-ingredients { animation-delay: 0.8s; }
+.modal-tags { animation-delay: 0.9s; }
+.purchase-controls { animation-delay: 1.0s; }
+
+
+.modal-product-name {
+  font-family: 'Playfair Display', serif; /* New elegant font */
+  font-size: 3rem;
+  line-height: 1.1;
+  color: #C68C4A;
+  margin: 0;
+}
+
+.modal-product-tagline {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  color: #5A3A28;
+  margin: 0.5rem 0 1rem;
+}
+
+.modal-product-price {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3E2E1F;
+  margin-bottom: 1rem;
+}
+
+.modal-product-description {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  color: #5A3A28;
+  line-height: 1.7;
+  flex-grow: 1; /* Pushes controls to the bottom */
+}
+
+.modal-ingredients {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+.modal-ingredients h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color: #3E2E1F;
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+}
+.modal-ingredients p {
+  color: #5A3A28;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tag {
+  background-color: #A7D8D6;
+  color: #3E2E1F;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+.tag:hover {
+  transform: scale(1.05);
+}
+
+/* --- PURCHASE CONTROLS --- */
+.purchase-controls {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  background: #f0e9e1;
+  border-radius: 30px;
+}
+.quantity-selector button {
+  background: transparent;
+  border: none;
+  color: #C68C4A;
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.quantity-selector button:hover {
+  color: #3E2E1F;
+}
+.quantity-selector span {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #3E2E1F;
+  min-width: 40px;
+  text-align: center;
+}
+
+.add-to-cart-button {
+  flex-grow: 1;
+  padding: 0 1rem;
+  height: 50px; /* consistent height */
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  background: linear-gradient(45deg, #FF9A8B, #FF6A88);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 106, 136, 0.4);
+  transition: all 0.3s ease;
+  animation: pulse 2s infinite;
+}
+
+.add-to-cart-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 106, 136, 0.6);
+  animation-play-state: paused;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+    padding: 4rem 1rem 1rem;
+  }
+  .modal-info-area {
+    text-align: center;
+  }
+  .purchase-controls {
+    flex-direction: column;
+  }
+}
