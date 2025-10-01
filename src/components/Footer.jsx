@@ -26,7 +26,7 @@ const Footer = () => {
                     <div className="footer-contact">
                         <h4>Contact Us</h4>
                         <p>Delicia Bakery, Pune</p>
-                        <p>Email: contact@delicia.com</p>
+                        <p>Email: orders@delicia.com</p>
                         <p>Phone: +91 12345 67890</p>
                     </div>
                 </div>

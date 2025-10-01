@@ -34,7 +34,7 @@ const ContactPage = () => {
                         
                         <h3>Talk to Us</h3>
                         <p>
-                            📞 Phone: <a href="tel:+919876543210">+91 98765 43210</a>
+                            📞 Phone: <a href="tel:+919876543210">+91 12345 67890</a>
                         </p>
                         <p>
                             📧 Email: <a href="mailto:orders@yourbakeryname.com">orders@delicia.com</a>
