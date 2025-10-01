@@ -1,0 +1,132 @@
+/* --- TESLA-LEVEL NOTIFICATION REDESIGN --- */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -150%); /* Start above the screen */
+    z-index: 2000;
+    
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    
+    background: rgba(255, 251, 245, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 40px rgba(198, 140, 74, 0.2);
+    
+    width: 90%;
+    max-width: 500px;
+    
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+}
+
+.notification-container.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+/* --- ANIMATED CHECKMARK ICON --- */
+.notification-icon {
+    flex-shrink: 0;
+}
+
+.checkmark {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 3;
+    stroke: #C68C4A;
+    stroke-miterlimit: 10;
+}
+
+.checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+    stroke: #C68C4A;
+    fill: none;
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) 0.5s forwards;
+}
+
+.checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: stroke 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.9s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* --- CONTENT --- */
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #3E2E1F;
+    margin: 0;
+}
+
+.notification-details {
+    font-family: 'Nunito', sans-serif;
+    color: #5A3A28;
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+}
+
+/* --- ACTION BUTTON --- */
+.notification-btn-view {
+    flex-shrink: 0;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    border: 1px solid #C68C4A;
+    background: transparent;
+    cursor: pointer;
+    color: #3E2E1F;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.notification-btn-view:hover {
+    background: #C68C4A;
+    color: white;
+}
+
+/* --- COUNTDOWN PROGRESS BAR --- */
+.notification-progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: #FF9A8B;
+    border-radius: 0 0 16px 16px;
+    transform-origin: left;
+    animation: countdown 3.5s linear 0.5s forwards;
+}
+
+@keyframes countdown {
+    from {
+        transform: scaleX(1);
+    }
+    to {
+        transform: scaleX(0);
+    }
+}

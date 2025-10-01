@@ -46,10 +46,11 @@ const Navbar = () => {
                 <li><NavLink to="/products" onClick={closeMenu} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Products</NavLink></li>
                 <li><NavLink to="/contact" onClick={closeMenu} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Contact</NavLink></li>
                 <li><NavLink to="/about" onClick={closeMenu} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>About Us</NavLink></li>
+                {/* --- THIS IS THE ONLY LINE I HAVE ADDED --- */}
+                <li><NavLink to="/cart" onClick={closeMenu} className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}>Cart</NavLink></li>
             </ul>
         </nav>
     );
 };
 
 export default Navbar;
-
