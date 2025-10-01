@@ -1,11 +1,12 @@
-/* src/pages/ContactPage.css */
+/* Import the Hero CSS to get the button styles */
+@import url('../components/Hero.css');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 .contact-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 2rem;
-    color: #333; /* Dark text for readability */
+    color: #333;
 }
 
 .contact-header {
@@ -14,17 +15,15 @@
 }
 
     .contact-header h1 {
-        font-family: 'Playfair Display', serif; /* The new elegant font */
+        font-family: 'Playfair Display', serif;
         font-size: 3rem;
         margin-bottom: 2rem;
-        position: relative; /* Needed for the underline */
-        color: #A37038; /* A strong, dark color for the text */
-        padding-bottom: 0.75rem; /* Space for the underline */
-        /* This applies the glowing animation to the text */
+        position: relative;
+        color: #A37038;
+        padding-bottom: 0.75rem;
         animation: text-glow 2.5s ease-in-out infinite alternate;
     }
 
-        /* This creates the underline and its animation */
         .contact-header h1::after {
             content: '';
             position: absolute;
@@ -32,14 +31,11 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: #C68C4A; /* Your primary brand color */
-            transform: scaleX(0); /* Starts hidden */
-            transform-origin: center; /* Animates from the center */
-            /* This applies the drawing animation to the underline */
+            background-color: #C68C4A;
+            transform: scaleX(0);
+            transform-origin: center;
             animation: draw-underline 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
-
-/* --- KEYFRAME ANIMATIONS --- */
 
 @keyframes text-glow {
     from {
@@ -53,7 +49,7 @@
 
 @keyframes draw-underline {
     to {
-        transform: scaleX(1); /* Finishes at full width */
+        transform: scaleX(1);
     }
 }
 
@@ -63,19 +59,18 @@
     gap: 3rem;
 }
 
-.contact-info {
+.contact-info,
+.contact-form-section {
     flex: 1;
     min-width: 300px;
+}
+
+.contact-info {
     background: rgba(255, 255, 255, 0.6);
     border: 1px solid rgba(214, 163, 163, 0.251);
     border-radius: 16px;
     backdrop-filter: blur(12px);
-    padding: 1.5rem; /* Added padding */
-}
-
-.contact-form-section {
-    flex: 1;
-    min-width: 300px;
+    padding: 1.5rem;
 }
 
     .contact-info h2,
@@ -86,26 +81,26 @@
         padding-bottom: 0.5rem;
     }
 
-.contact-info p,
-.contact-info li {
-    line-height: 1.8;
-    font-size: 1rem;
-}
-
-.contact-info ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-}
-
-.contact-info a {
-    color: #c58940;
-    text-decoration: none;
-}
-
-    .contact-info a:hover {
-        text-decoration: underline;
+    .contact-info p,
+    .contact-info li {
+        line-height: 1.8;
+        font-size: 1rem;
     }
+
+    .contact-info ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-info a {
+        color: #c58940;
+        text-decoration: none;
+    }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
 
 .map-container {
     margin-top: 2rem;
@@ -114,7 +109,6 @@
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Form Styling */
 .contact-form .form-group {
     margin-bottom: 1.5rem;
 }
@@ -137,23 +131,7 @@
     box-sizing: border-box;
 }
 
-.submit-btn {
-    display: block;
-    width: 100%;
-    padding: 0.8rem 1rem;
-    background-color: #C68C4A;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-    .submit-btn:hover {
-        background-color: #A37038;
-    }
+/* --- The old .submit-btn styles have been removed --- */
 
 .contact-form select {
     -webkit-appearance: none;
@@ -166,7 +144,6 @@
     padding-right: 2.5rem;
 }
 
-    /* Combined the focus state for a consistent look */
     .contact-form input:focus,
     .contact-form select:focus,
     .contact-form textarea:focus {

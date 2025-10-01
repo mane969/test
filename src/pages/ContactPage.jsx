@@ -38,7 +38,6 @@ const ContactPage = () => {
                             📧 Email: <a href="mailto:orders@yourbakeryname.com">orders@delicia.com</a>
                         </p>
 
-                        {/* This is the placeholder for your Google Map */}
                         <div className="map-container">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0471114944!2d73.7929269477685!3d18.52456488734268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1671536173738!5m2!1sen!2sin"
@@ -78,7 +77,8 @@ const ContactPage = () => {
                                 <label htmlFor="message">Message</label>
                                 <textarea id="message" name="message" rows="6" required></textarea>
                             </div>
-                            <button type="submit" className="submit-btn">Send Message</button>
+                            {/* --- CLASS NAME CHANGED HERE --- */}
+                            <button type="submit" className="btn-primary">Send Message</button>
                         </form>
                     </div>
                 </div>
