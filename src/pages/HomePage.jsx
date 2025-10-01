@@ -1,27 +1,26 @@
-// src/pages/HomePage.jsx
 import React from 'react';
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
 import FeaturedProducts from '../components/FeaturedProducts';
-// NO LONGER NEEDED: import GeometricBackground from '../components/GeometricBackground';
+import HygieneSection from '../components/HygieneSection';
+import CommunitySection from '../components/CommunitySection';
 import './HomePage.css';
 
 const HomePage = () => {
     return (
-        // The wrapper div is no longer needed for the background
+        // The homepage only needs to contain its sections. 
+        // The background is handled by App.jsx now.
         <div>
-            {/* Content is now the only thing in this file */}
             <Hero />
-
-            <div className="why-us-wrapper">
-                <WhyChooseUs />
-            </div>
-
+            <WhyChooseUs />
             <div className="main-content">
                 <FeaturedProducts />
             </div>
+            <HygieneSection />
+            <CommunitySection />
         </div>
     );
 };
 
 export default HomePage;
+

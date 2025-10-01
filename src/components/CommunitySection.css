@@ -1,0 +1,55 @@
+.community-section {
+    position: relative;
+    z-index: 2;
+    padding: 8rem 2rem;
+    margin: 6rem 0;
+    text-align: center;
+    color: white;
+    background: url('https://placehold.co/1200x400/333/FFF?text=Pune+Market') no-repeat center center/cover;
+    background-attachment: fixed; /* Parallax effect */
+}
+
+.community-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+.community-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+    .community-content h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    .community-content p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+    }
+
+.community-button {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .community-button:hover {
+        background-color: white;
+        color: #333;
+    }

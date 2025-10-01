@@ -1,0 +1,121 @@
+.about-us-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-us-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    color: #333;
+}
+
+.about-us-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+    .about-us-header h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 0.5rem;
+    }
+
+    .about-us-header .subtitle {
+        font-size: 1.5rem;
+        color: #555;
+    }
+
+/* Story Section */
+.story-section {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 5rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.story-image {
+    flex: 1;
+}
+
+    .story-image img {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+.story-content {
+    flex: 1.2;
+}
+
+    .story-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #333;
+    }
+
+    .story-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        color: #666;
+    }
+
+/* Baker Section */
+.baker-section {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    text-align: left;
+}
+
+.baker-image {
+    flex-basis: 300px;
+}
+
+    .baker-image img {
+        width: 100%;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+.baker-content {
+    flex: 1;
+}
+
+    .baker-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .baker-content h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ff6a88;
+        margin-bottom: 1.5rem;
+    }
+
+    .baker-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #666;
+    }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .story-section, .baker-section {
+        flex-direction: column;
+    }
+
+    .baker-section {
+        flex-direction: column-reverse; /* Puts image above text on mobile */
+        text-align: center;
+    }
+}
