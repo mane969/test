@@ -1,4 +1,10 @@
-.homepage-wrapper {
-    position: relative; /* This is essential for positioning the background */
-    overflow: hidden; /* Prevents shapes from spilling out */
+/* src/pages/HomePage.css */
+
+/* .homepage-wrapper can be removed */
+
+/* Keep any other styles for Hero, WhyChooseUs, etc. here */
+.why-us-wrapper {
+    /* (Example) You might have styles for this */
+    background-color: transparent;
+    padding: 2rem 0;
 }

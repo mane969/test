@@ -47,3 +47,13 @@
 .read-the-docs {
     color: #888;
 }
+
+.app-container {
+  position: relative;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1; /* This is key to placing content ON TOP of the background */
+  padding-top: 90px;
+}

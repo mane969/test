@@ -1,21 +1,18 @@
-// HomePage.js
+// src/pages/HomePage.jsx
 import React from 'react';
 import Hero from '../components/Hero';
 import WhyChooseUs from '../components/WhyChooseUs';
 import FeaturedProducts from '../components/FeaturedProducts';
-import GeometricBackground from '../components/GeometricBackground';
+// NO LONGER NEEDED: import GeometricBackground from '../components/GeometricBackground';
 import './HomePage.css';
 
 const HomePage = () => {
     return (
-        <div className="homepage-wrapper">
-            {/* Background */}
-            <GeometricBackground />
-
-            {/* Content */}
+        // The wrapper div is no longer needed for the background
+        <div>
+            {/* Content is now the only thing in this file */}
             <Hero />
 
-            {/* Wrap Why Us in its own solid container */}
             <div className="why-us-wrapper">
                 <WhyChooseUs />
             </div>
