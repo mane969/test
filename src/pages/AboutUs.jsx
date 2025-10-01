@@ -1,11 +1,9 @@
 import React from 'react';
 import './AboutUs.css';
-import GeometricBackground from '../components/GeometricBackground';
-
 const AboutUs = () => {
     return (
-        <div className="about-us-wrapper">
-            <GeometricBackground />
+        <div className="main-content">
+            {/* 2. DELETE THE <GeometricBackground /> COMPONENT FROM HERE */}
             <div className="about-us-container">
                 <header className="about-us-header">
                     <h1>Our Story</h1>
@@ -35,7 +33,7 @@ const AboutUs = () => {
                         <h2>Meet the Baker</h2>
                         <h3>Aisha Khan</h3>
                         <p>
-                            For me, baking is more than a profession—it's a way of life. I learned the art of baking from my grandmother, who taught me that patience, passion, and the finest ingredients are the secrets to unforgettable food. After years of perfecting my craft and sharing my creations with the local community in Pune, I founded Delicia to bring that same joy to a wider audience. My dream is to make Delicia a place where every customer feels like family.
+                            For me, baking is more than a professionï¿½it's a way of life. I learned the art of baking from my grandmother, who taught me that patience, passion, and the finest ingredients are the secrets to unforgettable food. After years of perfecting my craft and sharing my creations with the local community in Pune, I founded Delicia to bring that same joy to a wider audience. My dream is to make Delicia a place where every customer feels like family.
                         </p>
                     </div>
                     <div className="baker-image">
