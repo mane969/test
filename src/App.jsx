@@ -1,11 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import GeometricBackground from './components/GeometricBackground'; // Keep the global background
+import GeometricBackground from './components/GeometricBackground';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import ProductDetailPage from './pages/ProductDetailPage.jsx';
 import ContactPage from './pages/ContactPage';
-import AboutUs from './pages/AboutUs'; // Keep the new About Us import
+import AboutUs from './pages/AboutUs';
 import './App.css';
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/about" element={<AboutUs />} /> {/* Keep the new About Us route */}
+                    <Route path="/about" element={<AboutUs />} />
                     <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/products/:id" element={<ProductDetailPage />} />
                     <Route path="/contact" element={<ContactPage />} />
                 </Routes>
                 <Footer />
@@ -29,4 +31,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,0 +1,209 @@
+/* This file is completely new to style the modal experience.
+  It uses the brand colors and fonts from the rest of the site.
+*/
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(62, 46, 31, 0.5); /* Brand dark text color with transparency */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* For Safari */
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.modal-overlay.visible {
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #FFFBF5; /* Soft cream from GeometricBackground */
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+  position: relative;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.modal-content.visible {
+  transform: translateY(0);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #f0e9e1;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #5A3A28;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background-color: #e9dcd0;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 3rem 2rem 2rem;
+  display: flex;
+  gap: 2.5rem;
+}
+
+.modal-image-area {
+  flex: 1;
+  min-width: 300px;
+}
+
+.modal-product-image {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.modal-info-area {
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+}
+
+.modal-product-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.5rem;
+  color: #C68C4A; /* Warm bakery brown */
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.modal-product-price {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #3E2E1F;
+  margin-bottom: 1.5rem;
+}
+
+.modal-product-description {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  color: #5A3A28; /* Softer text color */
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Re-using tag style from the original detail page */
+.tag {
+  background-color: #A7D8D6;
+  color: #3E2E1F;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.quantity-selector {
+  margin-bottom: 2rem;
+}
+
+.quantity-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #3E2E1F;
+  margin-bottom: 0.75rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quantity-controls button {
+  background-color: #fff;
+  border: 2px solid #C68C4A;
+  color: #C68C4A;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.quantity-controls button:hover {
+  background-color: #C68C4A;
+  color: #fff;
+}
+
+.quantity-controls span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3E2E1F;
+  min-width: 30px;
+  text-align: center;
+}
+
+.add-to-cart-button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  background-color: #FF9A8B; /* Bakery pink */
+  color: #3E2E1F;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 154, 139, 0.4);
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #FF7B70;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(255, 154, 139, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .modal-body {
+    flex-direction: column;
+    padding: 3rem 1rem 1rem;
+  }
+  .modal-product-name {
+    font-size: 2rem;
+  }
+  .modal-product-price {
+    font-size: 1.5rem;
+  }
+}
