@@ -1,4 +1,5 @@
-import React from 'react';
+﻿import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
@@ -11,11 +12,11 @@ const Hero = () => {
                 </h1>
                 <p className="hero-subtitle">
                     Freshly baked <span>cakes</span>, <span>pies</span> &amp; <span>pastries</span>,
-                    crafted with love � just for you.
+                    crafted with love <span className="heart-icon">💖</span> — just for you.
                 </p>
                 <div className="hero-buttons">
-                    <button className="btn-primary">Order Now</button>
-                    <button className="btn-secondary">Explore Menu</button>
+                    <Link to="/products" className="btn-primary">Order Now</Link>
+                    <Link to="/products" className="btn-secondary">Explore Menu</Link>
                 </div>
             </div>
         </section>

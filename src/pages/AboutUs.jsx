@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './AboutUs.css';
+
+// Array of your kitchen images for the slideshow
+const kitchenImages = [
+    '/images/ourKitchen.jpg',
+    '/images/ourKitchen2.png'
+];
+
 const AboutUs = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // This effect will run on a timer to change the slide
+    useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentSlide(prevSlide => (prevSlide + 1) % kitchenImages.length);
+        }, 4000); // Change image every 4 seconds
+
+        // Clean up the interval when the component is unmounted
+        return () => clearInterval(slideInterval);
+    }, []);
+
     return (
-        <div className="main-content">
-            {/* 2. DELETE THE <GeometricBackground /> COMPONENT FROM HERE */}
+        <div className="about-us-wrapper">
             <div className="about-us-container">
                 <header className="about-us-header">
                     <h1>Our Story</h1>
@@ -11,11 +29,15 @@ const AboutUs = () => {
                 </header>
 
                 <section className="story-section">
-                    <div className="story-image">
-                        <img
-                            src="https://placehold.co/600x400/FFDADA/333?text=Our+Kitchen"
-                            alt="Delicia's kitchen"
-                        />
+                    <div className="story-image-slider">
+                        {kitchenImages.map((src, index) => (
+                            <img
+                                key={src}
+                                src={src}
+                                alt={`Delicia's kitchen view ${index + 1}`}
+                                className={`slide ${index === currentSlide ? 'active' : ''}`}
+                            />
+                        ))}
                     </div>
                     <div className="story-content">
                         <h2>Baking with Heart and Heritage</h2>
@@ -33,13 +55,13 @@ const AboutUs = () => {
                         <h2>Meet the Baker</h2>
                         <h3>Aisha Khan</h3>
                         <p>
-                            For me, baking is more than a profession�it's a way of life. I learned the art of baking from my grandmother, who taught me that patience, passion, and the finest ingredients are the secrets to unforgettable food. After years of perfecting my craft and sharing my creations with the local community in Pune, I founded Delicia to bring that same joy to a wider audience. My dream is to make Delicia a place where every customer feels like family.
+                            For me, baking is more than a profession—it's a way of life. I learned the art of baking from my grandmother, who taught me that patience, passion, and the finest ingredients are the secrets to unforgettable food. After years of perfecting my craft and sharing my creations with the local community in Pune, I founded Delicia to bring that same joy to a wider audience. My dream is to make Delicia a place where every customer feels like family 💖.
                         </p>
                     </div>
                     <div className="baker-image">
                         <img
-                            src="https://placehold.co/400x400/FF9A8B/FFF?text=Aisha"
-                            alt="Aisha Khan, the baker"
+                            src="/images/aishaKhan.png"
+                            alt="Aisha Khan, the baker of Delicia"
                         />
                     </div>
                 </section>

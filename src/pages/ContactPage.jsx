@@ -1,5 +1,3 @@
-// src/pages/ContactPage.jsx
-
 import React from 'react';
 import './ContactPage.css'; // We will create this file next
 
@@ -10,7 +8,7 @@ const ContactPage = () => {
                 <div className="contact-header">
                     <h1>Get in Touch With Us!</h1>
                     <p>
-                        We'd love to hear from you. Whether you have a question, a special request for a custom cake, 
+                        We'd love to hear from you. Whether you have a question, a special request for a custom cake,
                         or just want to say hello, here's how you can reach us.
                     </p>
                 </div>
@@ -31,7 +29,7 @@ const ContactPage = () => {
                             <li><strong>Saturday:</strong> 9:00 AM - 6:00 PM</li>
                             <li><strong>Sunday:</strong> Closed</li>
                         </ul>
-                        
+
                         <h3>Talk to Us</h3>
                         <p>
                             📞 Phone: <a href="tel:+919876543210">+91 12345 67890</a>
@@ -42,13 +40,13 @@ const ContactPage = () => {
 
                         {/* This is the placeholder for your Google Map */}
                         <div className="map-container">
-                           <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0471114944!2d73.7929269477685!3d18.52456488734268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1671536173738!5m2!1sen!2sin" 
-                                width="100%" 
-                                height="300" 
-                                style={{ border:0 }} 
-                                allowFullScreen="" 
-                                loading="lazy" 
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0471114944!2d73.7929269477685!3d18.52456488734268!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1671536173738!5m2!1sen!2sin"
+                                width="100%"
+                                height="300"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 title="Bakery Location">
                             </iframe>
@@ -90,3 +88,4 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
