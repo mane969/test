@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom'; // 1. Import ReactDOM for portals
 import './ProductDetailPage.css';
 
 const ProductDetailPage = ({ product, onClose }) => {
@@ -15,7 +16,7 @@ const ProductDetailPage = ({ product, onClose }) => {
     const handleClose = () => {
         setIsVisible(false);
         // Wait for the closing animation to finish before calling onClose
-        setTimeout(onClose, 600); // Increased delay for richer close animation
+        setTimeout(onClose, 600);
     };
 
     const incrementQuantity = () => setQuantity(prev => prev + 1);
@@ -25,10 +26,12 @@ const ProductDetailPage = ({ product, onClose }) => {
         return null;
     }
 
-    return (
+    // 2. The entire modal is now wrapped in a portal
+    // It will be rendered at the end of the document's body, ensuring it's on top.
+    return ReactDOM.createPortal(
         <div className={`modal-overlay ${isVisible ? 'visible' : ''}`} onClick={handleClose}>
             <div className={`modal-content ${isVisible ? 'visible' : ''}`} onClick={(e) => e.stopPropagation()}>
-                
+
                 <button className="modal-close-button" onClick={handleClose}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                 </button>
@@ -41,7 +44,7 @@ const ProductDetailPage = ({ product, onClose }) => {
                             className="modal-product-image"
                             onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/C68C4A/FFF?text=Image+Unavailable"; }}
                         />
-                         <div className="satisfaction-guarantee">
+                        <div className="satisfaction-guarantee">
                             <span className="heart-icon">💖</span>
                             Hope this makes your day!
                         </div>
@@ -51,9 +54,9 @@ const ProductDetailPage = ({ product, onClose }) => {
                         <h1 className="modal-product-name">{product.name}</h1>
                         <p className="modal-product-tagline">{product.tagline || 'A delightful treat for your senses.'}</p>
                         <p className="modal-product-price">{product.price}</p>
-                        
+
                         <p className="modal-product-description">{product.description}</p>
-                        
+
                         {product.ingredients && (
                             <div className="modal-ingredients">
                                 <h3>Finest Ingredients:</h3>
@@ -80,7 +83,8 @@ const ProductDetailPage = ({ product, onClose }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>,
+        document.body // This tells React to render the modal in the body tag
     );
 };
 
