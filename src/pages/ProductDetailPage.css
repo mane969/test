@@ -1,14 +1,14 @@
 /* --- Import a new, attractive font for titles --- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
-/* --- MODAL OVERLAY --- */
+/* --- MODAL OVERLAY (Unchanged) --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(30, 20, 10, 0.5); /* Darker, warmer overlay */
+  background-color: rgba(30, 20, 10, 0.5);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
@@ -24,9 +24,8 @@
 .modal-content {
   background: linear-gradient(160deg, #FFFBF5 0%, #FAF5EF 100%);
   width: 100%;
-  max-width: 1000px; /* Bigger modal */
-  height: 95%; /* Taller for more content */
-  max-height: 700px;
+  max-width: 950px;
+  max-height: 85vh;
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -45,7 +44,7 @@
   opacity: 1;
 }
 
-/* --- CLOSE BUTTON --- */
+/* --- CLOSE BUTTON (Unchanged) --- */
 .modal-close-button {
   position: absolute;
   top: 20px;
@@ -73,22 +72,23 @@
 
 /* --- MODAL BODY LAYOUT --- */
 .modal-body {
-  padding: 2rem;
+  /* --- ADJUSTED PADDING & REMOVED OVERFLOW --- */
+  padding: 1.5rem 2rem; /* Reduced vertical padding */
   display: flex;
   width: 100%;
-  gap: 3rem;
-  overflow-y: auto;
+  gap: 2.5rem;
+  /* overflow-y: auto; REMOVED THIS TO PREVENT SCROLLING */
 }
 
-/* Keyframe animation for staggered content fade-in */
+/* Keyframe animation (Unchanged) */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- IMAGE AREA --- */
+/* --- IMAGE AREA (Unchanged) --- */
 .modal-image-area {
-  flex: 1.2; /* Give image slightly more space */
+  flex: 1.2;
   position: relative;
   opacity: 0;
   animation: fadeIn 0.8s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -135,7 +135,6 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  /* Apply staggered animation to each element */
 }
 
 .modal-info-area > * {
@@ -143,7 +142,7 @@
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Stagger the animation delay for each element */
+/* Stagger animation (Unchanged) */
 .modal-product-name { animation-delay: 0.4s; }
 .modal-product-tagline { animation-delay: 0.5s; }
 .modal-product-price { animation-delay: 0.6s; }
@@ -154,8 +153,8 @@
 
 
 .modal-product-name {
-  font-family: 'Playfair Display', serif; /* New elegant font */
-  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem; /* Slightly reduced */
   line-height: 1.1;
   color: #C68C4A;
   margin: 0;
@@ -165,34 +164,34 @@
   font-family: 'Nunito', sans-serif;
   font-size: 1.1rem;
   color: #5A3A28;
-  margin: 0.5rem 0 1rem;
+  margin: 0.25rem 0 1rem; /* Reduced margin */
 }
 
 .modal-product-price {
   font-family: 'Poppins', sans-serif;
-  font-size: 2.2rem;
+  font-size: 2rem; /* Slightly reduced */
   font-weight: 700;
   color: #3E2E1F;
-  margin-bottom: 1rem;
+  margin-bottom: 1rem; /* Reduced margin */
 }
 
 .modal-product-description {
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   color: #5A3A28;
-  line-height: 1.7;
-  flex-grow: 1; /* Pushes controls to the bottom */
+  line-height: 1.6; /* Slightly reduced */
+  /* flex-grow: 1; REMOVED THIS TO ALLOW CONTENT TO STACK COMPACTLY */
 }
 
 .modal-ingredients {
-  margin-top: 1rem;
+  margin-top: 1rem; /* Reduced margin */
   font-size: 0.9rem;
 }
 .modal-ingredients h3 {
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
   color: #3E2E1F;
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 0.25rem 0; /* Reduced margin */
   font-size: 1rem;
 }
 .modal-ingredients p {
@@ -205,7 +204,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 1rem;
+  margin-top: 1rem; /* Reduced margin */
 }
 
 .tag {
@@ -225,7 +224,8 @@
 .purchase-controls {
   display: flex;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: auto; /* Pushes controls to the bottom */
+  padding-top: 1rem; /* Ensures space above */
 }
 
 .quantity-selector {
@@ -258,7 +258,7 @@
 .add-to-cart-button {
   flex-grow: 1;
   padding: 0 1rem;
-  height: 50px; /* consistent height */
+  height: 50px;
   font-size: 1rem;
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
@@ -284,16 +284,19 @@
     100% { transform: scale(1); }
 }
 
-/* --- RESPONSIVE ADJUSTMENTS --- */
+/* --- RESPONSIVE ADJUSTMENTS (Unchanged) --- */
 @media (max-width: 768px) {
   .modal-body {
     flex-direction: column;
     padding: 4rem 1rem 1rem;
+    overflow-y: auto; /* Allow scroll on small mobile where content might overflow */
   }
   .modal-info-area {
     text-align: center;
   }
   .purchase-controls {
     flex-direction: column;
+    margin-top: 1.5rem;
+    padding-top: 0;
   }
 }

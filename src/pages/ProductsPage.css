@@ -1,18 +1,130 @@
+/* --- Import a new, attractive font for titles --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+/* --- HEADING CONTAINER (Unchanged) --- */
 .products-page-container {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
 
+/* --- THE FUTURISTIC HEADING STYLE (Unchanged Text Animation) --- */
 .products-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #333;
+    margin-bottom: 4rem;
+    position: relative;
+    
+    background: linear-gradient(110deg, #A37038, #C68C4A, #5A3A28, #C68C4A, #A37038);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 8s linear infinite;
 }
 
+
+/* --- THE NEW, REFINED LINE FLOURISHES --- */
+.products-page-title::before,
+.products-page-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80px;  /* The length of the flourish */
+    height: 12px; /* The total height of the three lines */
+
+    /* This creates the three parallel lines using CSS gradients */
+    background-image: 
+        linear-gradient(to right, #C68C4A, #C68C4A),
+        linear-gradient(to right, #C68C4A, #C68C4A),
+        linear-gradient(to right, #C68C4A, #C68C4A);
+    
+    background-size: 
+        100% 2px,  /* Line 1: full length */
+        60% 2px,   /* Line 2: shorter */
+        80% 2px;   /* Line 3: medium length */
+
+    background-repeat: no-repeat;
+    
+    /* Animation for the lines */
+    animation: wipe-in 1.2s 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Position the left flourish (closer to the text) */
+.products-page-title::before {
+    left: 28%;
+    /* Vertically align the three lines */
+    background-position: 
+        left top,
+        left center,
+        left bottom;
+    /* The wipe animation will start from the right and move left */
+    clip-path: inset(0 0 0 100%);
+}
+
+/* Position the right flourish (closer to the text) */
+.products-page-title::after {
+    right: 28%;
+    /* Vertically align the three lines */
+    background-position: 
+        right top,
+        right center,
+        right bottom;
+    /* The wipe animation will start from the left and move right */
+    clip-path: inset(0 100% 0 0);
+}
+
+
+/* --- KEYFRAME ANIMATIONS --- */
+
+/* Keyframes for the text shimmer effect (Unchanged) */
+@keyframes shimmer {
+    to {
+        background-position: -200% center;
+    }
+}
+
+/* NEW Keyframes for the line wipe animation */
+@keyframes wipe-in {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+
+/* --- GRID STYLES (Unchanged) --- */
 .products-page-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
     justify-items: center;
+    justify-content: center;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS (Updated for new flourishes) --- */
+@media (max-width: 1024px) {
+    .products-page-title::before {
+        left: 20%;
+    }
+    .products-page-title::after {
+        right: 20%;
+    }
+}
+@media (max-width: 768px) {
+    .products-page-title {
+        font-size: 2.5rem;
+    }
+    .products-page-title::before,
+    .products-page-title::after {
+       display: none; /* Hide flourishes when space is limited */
+    }
+}
+@media (max-width: 480px) {
+    .products-page-title {
+        font-size: 2rem;
+    }
 }
