@@ -1,5 +1,6 @@
 /* src/pages/ContactPage.css */
-
+/* Add this to the top of src/pages/ContactPage.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 .contact-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -13,8 +14,50 @@
 }
 
 .contact-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif; /* The new elegant font */
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    position: relative; /* Needed for the underline */
+    color: #A37038; /* A strong, dark color for the text */
+    padding-bottom: 0.75rem; /* Space for the underline */
+    
+    /* This applies the glowing animation to the text */
+    animation: text-glow 2.5s ease-in-out infinite alternate;
+}
+
+/* This creates the underline and its animation */
+.contact-header h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #C68C4A; /* Your primary brand color */
+    transform: scaleX(0); /* Starts hidden */
+    transform-origin: center; /* Animates from the center */
+    
+    /* This applies the drawing animation to the underline */
+    animation: draw-underline 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* --- KEYFRAME ANIMATIONS --- */
+
+/* Keyframes for the soft text glow */
+@keyframes text-glow {
+    from {
+        text-shadow: 0 0 5px rgba(198, 140, 74, 0.2);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(198, 140, 74, 0.6);
+    }
+}
+
+/* Keyframes for the underline drawing effect */
+@keyframes draw-underline {
+    to {
+        transform: scaleX(1); /* Finishes at full width */
+    }
 }
 
 .contact-body {
@@ -27,7 +70,7 @@
     flex: 1;
     min-width: 300px; /* Ensures responsiveness */
     background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(214, 163, 163, 0.251);
     border-radius: 16px;
     backdrop-filter: blur(12px);
 }
@@ -35,6 +78,7 @@
 .contact-form-section{
     flex: 1;
     min-width: 300px; /* Ensures responsiveness */
+    
 }
 
 .contact-info h2 {
@@ -101,10 +145,11 @@
 .contact-form textarea {
     width: 100%;
     padding: 0.75rem;
-    border: 1px solid #ccc;
+    border: 1px solid #C68C4A;
     border-radius: 4px;
     font-size: 1rem;
     font-family: inherit;
+    box-sizing: border-box;
 }
 
 .submit-btn {
@@ -123,4 +168,30 @@
 
 .submit-btn:hover {
     background-color: #A37038; /* A slightly darker shade on hover */
+}
+
+/* Add this new code to the end of src/pages/ContactPage.css */
+
+/* 1. Remove the default browser appearance */
+.contact-form select {
+    -webkit-appearance: none; /* for Chrome, Safari, etc. */
+    -moz-appearance: none; /* for Firefox */
+    appearance: none;
+    border: 2px solid #E9C9A1;
+    
+    /* 2. Add our custom arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23C68C4A%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-13z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 0.8em;
+    padding-right: 2.5rem; /* Make room for the arrow */
+}
+
+/* 3. Style the focus state with brand colors */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none; /* Remove the default blue outline */
+    border-color: #C68C4A; /* Use your primary brand color for the border */
+    box-shadow: 0 0 0 3px rgba(198, 140, 74, 0.25); /* Add a soft "glow" with your brand color */
 }

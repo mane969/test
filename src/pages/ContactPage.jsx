@@ -20,7 +20,7 @@ const ContactPage = () => {
                     <div className="contact-info">
                         <h2>Visit Our Bakery</h2>
                         <p>
-                            <strong>[Your Bakery Name]</strong><br />
+                            <strong>Delicia</strong><br />
                             123, Sweet Lane,<br />
                             Koregaon Park, Pune, Maharashtra - 411001
                         </p>
@@ -37,7 +37,7 @@ const ContactPage = () => {
                             📞 Phone: <a href="tel:+919876543210">+91 98765 43210</a>
                         </p>
                         <p>
-                            📧 Email: <a href="mailto:orders@yourbakeryname.com">orders@yourbakeryname.com</a>
+                            📧 Email: <a href="mailto:orders@yourbakeryname.com">orders@delicia.com</a>
                         </p>
 
                         {/* This is the placeholder for your Google Map */}
