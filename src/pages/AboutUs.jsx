@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './AboutUs.css';
-import GeometricBackground from '../components/GeometricBackground';
+
+// Array of your kitchen images for the slideshow
+const kitchenImages = [
+    '/images/ourKitchen.jpg',
+    '/images/ourKitchen2.png'
+];
 
 const AboutUs = () => {
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // This effect will run on a timer to change the slide
+    useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentSlide(prevSlide => (prevSlide + 1) % kitchenImages.length);
+        }, 4000); // Change image every 4 seconds
+
+        // Clean up the interval when the component is unmounted
+        return () => clearInterval(slideInterval);
+    }, []);
+
     return (
         <div className="about-us-wrapper">
-            <GeometricBackground />
             <div className="about-us-container">
                 <header className="about-us-header">
                     <h1>Our Story</h1>
@@ -13,11 +29,15 @@ const AboutUs = () => {
                 </header>
 
                 <section className="story-section">
-                    <div className="story-image">
-                        <img
-                            src="https://placehold.co/600x400/FFDADA/333?text=Our+Kitchen"
-                            alt="Delicia's kitchen"
-                        />
+                    <div className="story-image-slider">
+                        {kitchenImages.map((src, index) => (
+                            <img
+                                key={src}
+                                src={src}
+                                alt={`Delicia's kitchen view ${index + 1}`}
+                                className={`slide ${index === currentSlide ? 'active' : ''}`}
+                            />
+                        ))}
                     </div>
                     <div className="story-content">
                         <h2>Baking with Heart and Heritage</h2>
@@ -40,8 +60,8 @@ const AboutUs = () => {
                     </div>
                     <div className="baker-image">
                         <img
-                            src="https://placehold.co/400x400/FF9A8B/FFF?text=Aisha"
-                            alt="Aisha Khan, the baker"
+                            src="/images/aishaKhan.png"
+                            alt="Aisha Khan, the baker of Delicia"
                         />
                     </div>
                 </section>
@@ -51,3 +71,4 @@ const AboutUs = () => {
 };
 
 export default AboutUs;
+
