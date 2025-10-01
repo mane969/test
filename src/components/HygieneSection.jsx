@@ -15,6 +15,7 @@ const HygieneSection = () => {
                         <span>Fresh & Natural Ingredients</span>
                     </div>
                     <div className="standard-item">
+                        {/* --- TYPO FIXED IN THE SVG BELOW --- */}
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                         <span>Impeccable Kitchen Standards</span>
                     </div>
@@ -25,10 +26,11 @@ const HygieneSection = () => {
                 </div>
             </div>
             <div className="hygiene-image">
-                <img src="https://placehold.co/600x450/FF9A8B/FFF?text=Clean+Kitchen" alt="A clean and modern bakery kitchen" />
+                <img src="/images/ourKitchen.jpg" alt="A bright, clean, and sanitized commercial kitchen" />
             </div>
         </section>
     );
 };
 
 export default HygieneSection;
+
