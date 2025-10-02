@@ -1,17 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap');
+
 .about-us-wrapper {
     position: relative;
     overflow: hidden;
+    padding: 2rem;
 }
 
+/* --- Container --- */
 .about-us-container {
     position: relative;
     z-index: 2;
     max-width: 1100px;
     margin: 0 auto;
     padding: 4rem 2rem;
-    color: #333;
+    color: #3E2E1F;
 }
 
+/* --- HEADER --- */
 .about-us-header {
     text-align: center;
     margin-bottom: 4rem;
@@ -21,41 +26,112 @@
         font-family: 'Playfair Display', serif;
         font-size: 3.5rem;
         font-weight: 700;
-        color: #222;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(110deg, #A37038, #C68C4A, #5A3A28);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 8s linear infinite;
+        position: relative;
+        display: inline-block;
+        padding-bottom: 1rem;
     }
+
+        /* animated underline matches text */
+        .about-us-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #C68C4A, #FF9A8B, #FF6A88);
+            border-radius: 3px;
+            transform: scaleX(0);
+            transform-origin: center;
+            animation: draw-underline 1.2s 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
 
     .about-us-header .subtitle {
         font-family: 'Nunito', sans-serif;
         font-size: 1.5rem;
-        color: #555;
+        color: #5A3A28;
+        margin-top: 0.5rem;
     }
 
-/* Story Section */
+/* animations */
+@keyframes shimmer {
+    to {
+        background-position: -200% center;
+    }
+}
+
+@keyframes draw-underline {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* --- STORY SECTION --- */
 .story-section {
     display: flex;
     gap: 3rem;
     align-items: center;
     margin-bottom: 5rem;
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 251, 245, 0.7);
+    backdrop-filter: blur(12px);
     padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(198, 140, 74, 0.15);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 0.8s forwards;
 }
 
-/* --- CSS UPDATED HERE --- */
+    .story-section::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: linear-gradient(120deg, #C68C4A, #FF9A8B, #FF6A88, #C68C4A);
+        background-size: 300% 300%;
+        animation: shimmer-border 8s linear infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: -1;
+    }
 
-/* This now styles the slideshow container */
+@keyframes fade-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer-border {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+/* --- SLIDER --- */
 .story-image-slider {
     flex: 1;
-    position: relative; /* Crucial for containing the slides */
-    border-radius: 12px;
+    position: relative;
+    border-radius: 16px;
     overflow: hidden;
-    aspect-ratio: 3 / 2; /* Maintains a consistent shape */
+    aspect-ratio: 3 / 2;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Styles for the individual images */
 .slide {
     position: absolute;
     top: 0;
@@ -71,9 +147,20 @@
     .slide.active {
         opacity: 1;
         z-index: 2;
+        animation: glow 2s ease-in-out;
     }
 
+@keyframes glow {
+    from {
+        filter: brightness(0.95);
+    }
 
+    to {
+        filter: brightness(1.05);
+    }
+}
+
+/* --- STORY TEXT --- */
 .story-content {
     flex: 1.2;
 }
@@ -82,7 +169,7 @@
         font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
         margin-bottom: 1.5rem;
-        color: #333;
+        color: #3E2E1F;
     }
 
     .story-content p {
@@ -90,27 +177,38 @@
         font-size: 1.1rem;
         line-height: 1.8;
         margin-bottom: 1rem;
-        color: #666;
+        color: #555;
     }
 
-/* Baker Section */
+/* --- BAKER SECTION --- */
 .baker-section {
     display: flex;
     gap: 3rem;
     align-items: center;
     text-align: left;
+    margin-bottom: 5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 0.8s forwards;
+    animation-delay: 0.3s;
 }
 
 .baker-image {
     flex-basis: 300px;
+    position: relative;
 }
 
     .baker-image img {
         width: 100%;
         border-radius: 50%;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        border: 3px solid transparent;
+        background-image: linear-gradient(120deg, #C68C4A, #FF9A8B, #FF6A88);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
     }
 
+/* --- BAKER TEXT --- */
 .baker-content {
     flex: 1;
 }
@@ -119,13 +217,14 @@
         font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
+        color: #3E2E1F;
     }
 
     .baker-content h3 {
         font-family: 'Nunito', sans-serif;
         font-size: 1.5rem;
         font-weight: 600;
-        color: #ff6a88;
+        color: #FF6A88;
         margin-bottom: 1.5rem;
     }
 
@@ -133,17 +232,17 @@
         font-family: 'Nunito', sans-serif;
         font-size: 1.1rem;
         line-height: 1.8;
-        color: #666;
+        color: #555;
     }
 
-/* Responsive adjustments */
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .story-section, .baker-section {
         flex-direction: column;
     }
 
     .baker-section {
-        flex-direction: column-reverse; /* Puts image above text on mobile */
+        flex-direction: column-reverse;
         text-align: center;
     }
 }

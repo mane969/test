@@ -1,14 +1,16 @@
-/* Import the Hero CSS to get the button styles */
+/* Import bakery theme */
 @import url('../components/Hero.css');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
 .contact-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 2rem;
-    color: #333;
+    color: #3E2E1F;
 }
 
+/* --- HEADER --- */
 .contact-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -16,34 +18,45 @@
 
     .contact-header h1 {
         font-family: 'Playfair Display', serif;
-        font-size: 3rem;
-        margin-bottom: 2rem;
+        font-size: 3.2rem;
+        margin-bottom: 1.2rem;
+        background: linear-gradient(110deg, #A37038, #C68C4A, #5A3A28);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 8s linear infinite;
         position: relative;
-        color: #A37038;
-        padding-bottom: 0.75rem;
-        animation: text-glow 2.5s ease-in-out infinite alternate;
+        padding-bottom: 1rem;
+        display: inline-block; /* ensures underline matches only text width */
     }
 
+        /* --- Animated underline matches text width --- */
         .contact-header h1::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 100%;
+            width: 100%; /* full width of the text */
             height: 3px;
-            background-color: #C68C4A;
+            background: linear-gradient(90deg, #C68C4A, #FF9A8B, #FF6A88);
+            border-radius: 3px;
             transform: scaleX(0);
             transform-origin: center;
-            animation: draw-underline 1s 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            animation: draw-underline 1.2s 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
 
-@keyframes text-glow {
-    from {
-        text-shadow: 0 0 5px rgba(198, 140, 74, 0.2);
+    .contact-header p {
+        font-family: 'Nunito', sans-serif;
+        font-size: 1.1rem;
+        color: #5A3A28;
+        max-width: 650px;
+        margin: 0 auto;
     }
 
+/* animations reused */
+@keyframes shimmer {
     to {
-        text-shadow: 0 0 20px rgba(198, 140, 74, 0.6);
+        background-position: -200% center;
     }
 }
 
@@ -53,101 +66,206 @@
     }
 }
 
+/* --- BODY LAYOUT --- */
 .contact-body {
     display: flex;
     flex-wrap: wrap;
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 .contact-info,
 .contact-form-section {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
+    background: rgba(255, 251, 245, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgba(198, 140, 74, 0.15);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fade-up 0.8s forwards;
 }
 
 .contact-info {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(214, 163, 163, 0.251);
-    border-radius: 16px;
-    backdrop-filter: blur(12px);
-    padding: 1.5rem;
+    animation-delay: 0.2s;
 }
 
-    .contact-info h2,
-    .contact-form-section h2 {
-        font-size: 1.8rem;
-        color: #555;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.5rem;
+.contact-form-section {
+    animation-delay: 0.4s;
+}
+
+@keyframes fade-up {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Shimmer border effect --- */
+.contact-info::before,
+.contact-form-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(120deg, #C68C4A, #FF9A8B, #FF6A88, #C68C4A);
+    background-size: 300% 300%;
+    animation: shimmer-border 8s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1; /* ensures overlay doesn't block inputs */
+}
+
+@keyframes shimmer-border {
+    0% {
+        background-position: 0% 50%;
     }
 
-    .contact-info p,
-    .contact-info li {
-        line-height: 1.8;
-        font-size: 1rem;
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+/* --- INFO PANEL --- */
+.contact-info h2,
+.contact-form-section h2 {
+    font-size: 1.8rem;
+    color: #5A3A28;
+    margin-bottom: 1.2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.contact-info h3 {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    color: #A37038;
+}
+
+.contact-info p,
+.contact-info li {
+    line-height: 1.8;
+    font-size: 1rem;
+    font-family: 'Nunito', sans-serif;
+}
+
+.contact-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+}
+
+.contact-info a {
+    color: #C68C4A;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+    .contact-info a:hover {
+        text-decoration: underline;
     }
 
-    .contact-info ul {
-        list-style: none;
-        padding: 0;
-        margin-bottom: 1.5rem;
-    }
-
-    .contact-info a {
-        color: #c58940;
-        text-decoration: none;
-    }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
+/* Map styling */
 .map-container {
     margin-top: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
 }
 
-.contact-form .form-group {
-    margin-bottom: 1.5rem;
+    .map-container:hover {
+        transform: scale(1.02);
+    }
+
+/* --- FORM --- */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
 }
 
-.contact-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
+    .contact-form .form-group {
+        width: 100%;
+        max-width: 500px; /* center fields */
+    }
 
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #C68C4A;
-    border-radius: 4px;
+    .contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        font-family: 'Nunito', sans-serif;
+        color: #5A3A28;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 1px solid #e9dcd0;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: 'Nunito', sans-serif;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        box-sizing: border-box;
+        background: #fff;
+    }
+
+        .contact-form input:focus,
+        .contact-form select:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: #FF9A8B;
+            box-shadow: 0 0 0 3px rgba(255, 154, 139, 0.25);
+        }
+
+    /* Custom select arrow */
+    .contact-form select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4"%3E%3Cpath fill="%23C68C4A" d="M287 69.4a17.6 17.6 0 0 0-13-5.4H18.4c-5 0-9.3 1.8-12.9 5.4A17.6 17.6 0 0 0 0 82.2c0 5 1.8 9.3 5.4 12.9l128 127.9c3.6 3.6 7.8 5.4 12.8 5.4s9.2-1.8 12.8-5.4L287 95c3.5-3.5 5.4-7.8 5.4-12.8 0-5-1.9-9.4-5.4-13z"/%3E%3C/svg%3E');
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 0.8em;
+        padding-right: 2.5rem;
+    }
+
+/* --- SUBMIT BUTTON --- */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
     font-size: 1rem;
-    font-family: inherit;
-    box-sizing: border-box;
+    padding: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    max-width: 500px;
+    transition: transform 0.3s ease;
 }
 
-/* --- The old .submit-btn styles have been removed --- */
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }
 
-.contact-form select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23C68C4A%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-13z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    background-size: 0.8em;
-    padding-right: 2.5rem;
-}
+    /* magnetic aura */
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,154,139,0.25), transparent 40%);
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
 
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus {
-        outline: none;
-        border-color: #C68C4A;
-        box-shadow: 0 0 0 3px rgba(198, 140, 74, 0.25);
+    .btn-primary:hover::before {
+        opacity: 1;
     }
