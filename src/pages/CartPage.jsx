@@ -135,9 +135,9 @@ const CartPage = ({ cartItems, setCartItems }) => {
                     />
                 )}
 
-                <button className="checkout-button">
+                <Link to="/checkout" className="checkout-button">
                     <span>Proceed to Checkout</span>
-                </button>
+                </Link>
             </div>
         </div>
     );

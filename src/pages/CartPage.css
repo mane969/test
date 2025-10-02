@@ -240,6 +240,11 @@
     cursor: pointer; position: relative; overflow: hidden;
     box-shadow: 0 4px 15px rgba(255, 106, 136, 0.4);
     transition: all 0.3s ease;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }
 .checkout-button:hover {
     transform: translateY(-3px);

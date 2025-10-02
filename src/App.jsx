@@ -12,6 +12,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import ContactPage from './pages/ContactPage';
 import AboutUs from './pages/AboutUs';
 import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
 import './App.css';
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetailPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+                        <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
                     </Routes>
                 </main>
                 <Footer />
