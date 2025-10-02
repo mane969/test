@@ -79,36 +79,56 @@
     justify-content: center;
 }
 
-.btn-primary,
-.btn-secondary {
-    padding: 1rem 2.5rem;
-    font-size: 1rem;
+.btn-primary {
+    padding: 1.1rem 2.8rem;
+    font-size: 1.1rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
     text-decoration: none;
-    border-radius: 40px;
+    border-radius: 50px; /* Fully rounded */
     border: 2px solid transparent;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smoother transition */
+    display: flex; /* Added for icon alignment */
+    align-items: center; /* Added for icon alignment */
+    justify-content: center; /* Added for icon alignment */
+    gap: 0.75rem; /* Space between text and icon */
+    position: relative; /* Needed for the shimmer effect */
+    overflow: hidden; /* Needed for the shimmer effect */
 }
 
+
+/* God-Level Primary Button */
 .btn-primary {
     background: radial-gradient(circle, #FF9A8B, #FF6A88);
     color: #fff;
-    box-shadow: 0 6px 18px rgba(255, 106, 136, 0.35);
-    /* --- ANIMATION ADDITIONS --- */
-    background-size: 250% 250%; /* Make the gradient larger than the button */
-    animation: gradient-flow 15s linear infinite; /* Apply the animation */
-    transition: all 0.3s ease; /* Added for smooth hover transitions */
+    box-shadow: 0 6px 20px rgba(255, 106, 136, 0.3);
+    border-color: rgba(255, 255, 255, 0.2); /* Subtle border */
+    background-size: 250% 250%;
+    animation: gradient-flow 15s linear infinite;
 }
 
+    /* The Shimmering Hover Effect */
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 24px rgba(255, 106, 136, 0.5);
-        filter: brightness(1.05);
-        /* Speed up the animation on hover for a responsive feel */
+        transform: translateY(-4px) scale(1.02); /* More pronounced lift */
+        box-shadow: 0 10px 25px rgba(255, 106, 136, 0.45);
+        filter: brightness(1.1);
         animation-duration: 4s;
     }
+
+        .btn-primary:hover::before {
+            left: 100%; /* Move the shimmer across the button on hover */
+        }
 
 /* --- KEYFRAMES FOR THE ANIMATION --- */
 /* This moves the background position in a slow, circular-like path */
@@ -134,38 +154,9 @@
     }
 }
 
-@keyframes glow-pulse {
-    0%, 100% {
-        box-shadow: 0 6px 20px rgba(255, 106, 136, 0.4);
-    }
 
-    50% {
-        box-shadow: 0 8px 28px rgba(255, 106, 136, 0.7);
-    }
-}
 
-/* Secondary: glassy with gradient border */
-.btn-secondary {
-    background: #fff;
-    border: 2px solid #ff6a88;
-    color: #ff6a88;
-}
 
-    .btn-secondary:hover {
-        background: #ff6a88;
-        color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 18px rgba(255, 106, 136, 0.3);
-    }
-@keyframes border-shimmer {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    100% {
-        background-position: 200% 50%;
-    }
-}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
@@ -182,7 +173,7 @@
         gap: 1rem;
     }
 
-    .btn-primary, .btn-secondary {
+    .btn-primary {
         width: 100%;
         text-align: center;
     }
