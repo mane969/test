@@ -104,7 +104,89 @@
     justify-items: center;
     justify-content: center;
 }
+/* src/pages/ProductsPage.css */
 
+/* --- ADD THIS NEW CODE AT THE BOTTOM --- */
+
+.products-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* Sidebar width and the rest for the grid */
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.no-results-message {
+    grid-column: 1 / -1; /* Make message span the whole grid area */
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.2rem;
+    color: #5A3A28;
+    padding: 4rem 0;
+}
+/* src/pages/ProductsPage.css */
+
+/* --- ADD THIS NEW CODE AT THE BOTTOM --- */
+/* src/pages/ProductsPage.css */
+
+/* --- REPLACE THE OLD .no-results-container with THIS --- */
+.no-results-container-godlevel {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.no-results-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.no-results-container-godlevel h3,
+.no-results-container-godlevel p,
+.no-results-container-godlevel .clear-filters-btn {
+    position: relative;
+    z-index: 1;
+}
+
+.no-results-container-godlevel h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #3E2E1F;
+    margin: 0 0 0.5rem;
+}
+
+.no-results-container-godlevel p {
+    color: #5A3A28;
+    margin-bottom: 2rem;
+    max-width: 300px;
+}
+
+.no-results-container-godlevel .clear-filters-btn {
+    padding: 0.9rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* --- RESPONSIVE ADJUSTMENTS for the layout --- */
+@media (max-width: 900px) {
+    .products-layout {
+        grid-template-columns: 1fr; /* Stack sidebar on top of grid */
+    }
+}
 /* --- RESPONSIVE ADJUSTMENTS (Updated for new flourishes) --- */
 @media (max-width: 1024px) {
     .products-page-title::before {

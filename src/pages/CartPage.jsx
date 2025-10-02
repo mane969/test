@@ -1,56 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './CartPage.css';
-import { productsData } from '../data/products';
 
-const initialCartItems = [
-    { id: 2, quantity: 2 },
-    { id: 6, quantity: 1 },
-];
+
 
 const FREE_DELIVERY_THRESHOLD = 3000;
 
-const CartPage = () => {
-    const [cart, setCart] = useState([]);
+const CartPage = ({ cartItems, setCartItems }) => {
     const [isGift, setIsGift] = useState(false);
     const [giftMessage, setGiftMessage] = useState('');
 
-    useEffect(() => {
-        const hydratedCart = initialCartItems.map(item => {
-            const product = productsData.find(p => p.id === item.id);
-            const priceNumber = parseFloat(product.price.replace('₹', '').replace(/,/g, ''));
-            return { ...product, quantity: item.quantity, priceNumber, isRemoving: false };
-        });
-        setCart(hydratedCart);
-    }, []);
 
     const handleQuantityChange = (productId, newQuantity) => {
         if (newQuantity < 1) {
             handleRemoveItem(productId);
             return;
         }
-        setCart(cart.map(item => 
+        setCartItems(cartItems.map(item =>
             item.id === productId ? { ...item, quantity: newQuantity } : item
         ));
     };
 
     const handleRemoveItem = (productId) => {
-        setCart(cart.map(item =>
+        setCartItems(cartItems.map(item =>
             item.id === productId ? { ...item, isRemoving: true } : item
         ));
         setTimeout(() => {
-            setCart(prevCart => prevCart.filter(item => item.id !== productId));
+            setCartItems(prevCart => prevCart.filter(item => item.id !== productId));
         }, 500);
     };
+    const getPriceNumber = (price) => parseFloat(String(price).replace('₹', '').replace(/,/g, ''));
 
-    const subtotal = cart.reduce((total, item) => total + item.priceNumber * item.quantity, 0);
+    const subtotal = cartItems.reduce((total, item) => total + getPriceNumber(item.price) * item.quantity, 0);
+
     const taxes = subtotal * 0.18;
     const deliveryFee = subtotal >= FREE_DELIVERY_THRESHOLD ? 0 : 50;
     const grandTotal = subtotal + taxes + deliveryFee;
     const amountForFreeDelivery = FREE_DELIVERY_THRESHOLD - subtotal;
     const deliveryProgress = Math.min((subtotal / FREE_DELIVERY_THRESHOLD) * 100, 100);
 
-    if (cart.length === 0) {
+    if (cartItems.length === 0) {
         return (
             <div className="main-content empty-cart-container">
                 <div className="empty-cart-icon">
@@ -72,7 +61,7 @@ const CartPage = () => {
             <div className="cart-items-section">
                 <h1 className="cart-page-title">Your Curated Box</h1>
                 <div className="cart-items-list">
-                    {cart.map(item => (
+                    {cartItems.map(item => (
                         <div key={item.id} className={`cart-item-card ${item.isRemoving ? 'removing' : ''}`}>
                             <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
                             <div className="cart-item-details">
@@ -86,7 +75,7 @@ const CartPage = () => {
                             </div>
                             <div className="cart-item-price-section">
                                 <p key={item.quantity} className="cart-item-total-price">
-                                    ₹{(item.priceNumber * item.quantity).toLocaleString('en-IN')}
+                                    ₹{(getPriceNumber(item.price) * item.quantity).toLocaleString('en-IN')}
                                 </p>
                                 <button onClick={() => handleRemoveItem(item.id)} className="cart-item-remove">
                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>

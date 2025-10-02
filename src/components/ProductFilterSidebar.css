@@ -1,0 +1,371 @@
+﻿/* src/components/ProductFilterSidebar.css */
+.filter-sidebar-godlevel {
+    background: rgba(255, 251, 245, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 28px;
+    box-shadow: 0 10px 40px 0 rgba(198, 140, 74, 0.15);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+    animation: sidebar-fade-in 0.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    overflow: hidden;
+}
+
+    /* --- Animated shimmer border for luxury feel --- */
+    .filter-sidebar-godlevel::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 28px;
+        padding: 2px;
+        background: linear-gradient(120deg, #C68C4A, #FF9A8B, #FF6A88, #C68C4A);
+        background-size: 300% 300%;
+        animation: shimmer-border 8s linear infinite;
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    }
+
+@keyframes shimmer-border {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes sidebar-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* --- Sequential section entrance --- */
+.filter-section {
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(198, 140, 74, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: section-fade-in 0.8s forwards;
+}
+
+    .filter-section:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+
+    .filter-section:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+
+    .filter-section:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+@keyframes section-fade-in {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filter-section:last-of-type {
+    border-bottom: none;
+}
+
+.filter-title-wrapper {
+    margin-bottom: 0.5rem;
+}
+
+.filter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #3E2E1F;
+    margin: 0;
+}
+
+.price-values {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: #5A3A28;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* --- MAGNETIC DUAL THUMB PRICE SLIDER --- */
+.price-slider {
+    position: relative;
+    height: 4px;
+}
+
+.price-slider__track, .price-slider__range {
+    position: absolute;
+    border-radius: 3px;
+    height: 100%;
+}
+
+.price-slider__track {
+    background-color: #e9dcd0;
+    width: 100%;
+    z-index: 1;
+}
+
+.price-slider__range {
+    background: linear-gradient(90deg, #FF9A8B, #FF6A88, #FF9A8B);
+    background-size: 200% 100%;
+    animation: range-glow 6s infinite linear;
+    z-index: 2;
+}
+
+@keyframes range-glow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+.thumb, .thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: 100%;
+    outline: none;
+    top: 0;
+    left: 0;
+}
+
+.thumb--left {
+    z-index: 3;
+}
+
+.thumb--right {
+    z-index: 4;
+}
+
+.thumb::-webkit-slider-thumb {
+    background-color: #fff;
+    border: 3px solid #FF9A8B;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    height: 22px;
+    width: 22px;
+    margin-top: 5px;
+    pointer-events: all;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+    .thumb::-webkit-slider-thumb:hover {
+        transform: scale(1.15);
+        box-shadow: 0 4px 15px rgba(255, 106, 136, 0.4);
+    }
+
+.thumb:active::-webkit-slider-thumb {
+    border-color: #FF6A88;
+}
+
+/* Magnetic return-to-zero effect for the left thumb */
+.thumb--left[data-magnetic="true"]::-webkit-slider-thumb {
+    transition: transform 0.4s cubic-bezier(0, .9, .4, 1.2);
+}
+
+/* --- GOOEY EFFECT TAG PILLS --- */
+.tags-container-godlevel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    filter: url("#goo");
+}
+
+.tag-pill {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 30px;
+    border: 1px solid #e9dcd0;
+    background-color: #fff;
+    color: #5A3A28;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+    .tag-pill.active {
+        background: linear-gradient(45deg, #FF9A8B, #FF6A88);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 4px 15px rgba(255, 106, 136, 0.3);
+        transform: translateY(-2px);
+    }
+
+    .tag-pill:not(.active):hover {
+        transform: translateY(-2px);
+        border-color: #C68C4A;
+    }
+
+    /* Ripple effect on click */
+    .tag-pill:active {
+        transform: scale(0.96);
+    }
+
+        .tag-pill:active::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            background: rgba(255,106,136,0.2);
+            animation: ripple 0.5s ease;
+        }
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Gooey explosion dots */
+.goo-container {
+    display: none;
+}
+
+.tag-pill.active .gooey-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #FF6A88;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: gooey-explode 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+    .tag-pill.active .gooey-dot:nth-child(2) {
+        animation-delay: 0.1s;
+    }
+
+    .tag-pill.active .gooey-dot:nth-child(3) {
+        animation-delay: 0.2s;
+    }
+
+@keyframes gooey-explode {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* --- GOD-LEVEL CUSTOM SELECT --- */
+.custom-select-wrapper {
+    position: relative;
+}
+
+    .custom-select-wrapper::after {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-bottom: 2px solid #C68C4A;
+        border-right: 2px solid #C68C4A;
+        position: absolute;
+        right: 1.2rem;
+        top: 45%;
+        transform: translateY(-50%) rotate(45deg);
+        pointer-events: none;
+        transition: transform 0.3s ease;
+    }
+
+    .custom-select-wrapper:focus-within::after {
+        transform: translateY(-25%) rotate(225deg);
+    }
+
+.sort-by-select {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #e9dcd0;
+    background: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    color: #3E2E1F;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .sort-by-select:focus {
+        outline: none;
+        border-color: #FF9A8B;
+        box-shadow: 0 0 0 3px rgba(255, 154, 139, 0.3);
+    }
+
+/* --- CLEAR BUTTON --- */
+.clear-filters-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.9rem;
+    border: none;
+    background: #f0e9e1;
+    color: #5A3A28;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .clear-filters-btn:hover {
+        background: #e4d5c7;
+        color: #3E2E1F;
+        transform: translateY(-2px);
+    }
+    /* Magnetic aura hover effect */
+    .clear-filters-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255,154,139,0.3), transparent 40%);
+        transition: opacity 0.2s;
+        opacity: 0;
+    }
+
+    .clear-filters-btn:hover::before {
+        opacity: 1;
+    }

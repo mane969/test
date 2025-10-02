@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './ProductDetailPage.css';
 import NotificationModal from '../components/NotificationModal';
 
-const ProductDetailPage = ({ product, onClose }) => {
+const ProductDetailPage = ({ product, onClose, onAddToCart }) => {
     const [quantity, setQuantity] = useState(1);
     const [isVisible, setIsVisible] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
@@ -20,8 +20,7 @@ const ProductDetailPage = ({ product, onClose }) => {
     };
 
     const handleAddToCart = () => {
-        // In a real app, this is where you would dispatch an action to add the item to a global cart state.
-        console.log(`${quantity} x ${product.name} added to cart!`);
+        onAddToCart(product, quantity); // This calls the function in App.jsx
         setShowNotification(true);
     };
 

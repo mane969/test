@@ -1,4 +1,5 @@
 // src/data/products.js
+
 export const productsData = [
     {
         id: 1,
@@ -8,7 +9,8 @@ export const productsData = [
         tagline: 'The heart of our bakery in every slice.',
         description: 'Our signature loaf, naturally leavened and hand-shaped. Features a crisp, deeply caramelized crust and a soft, tangy, airy crumb. Perfect for sandwiches or simply toasted with butter.',
         ingredients: 'Organic Whole Wheat Flour, Water, Sea Salt, Natural Sourdough Starter.',
-        tags: ['Bread', 'Vegan', 'Signature']
+        tags: ['Bread', 'Vegan', 'Signature'],
+        category: 'Pastries' // <-- ADDED
     },
     {
         id: 2,
@@ -18,7 +20,8 @@ export const productsData = [
         tagline: 'Pure, flaky, chocolatey bliss.',
         description: 'Flaky, buttery French pastry filled with two dark chocolate batons. Baked fresh every morning in Pune to achieve that perfect crunch and melt-in-your-mouth interior.',
         ingredients: 'Enriched Flour, European Butter, Dark Chocolate, Sugar, Yeast, Sea Salt.',
-        tags: ['Pastry', 'Chocolate', 'Breakfast']
+        tags: ['Pastry', 'Chocolate', 'Breakfast'],
+        category: 'Pastries' // <-- ADDED
     },
     {
         id: 3,
@@ -28,7 +31,8 @@ export const productsData = [
         tagline: 'Six little jewels of pure joy.',
         description: 'A colorful selection of six delicate, melt-in-your-mouth French macarons in classic flavors: salted caramel, pistachio, raspberry, vanilla bean, lemon, and chocolate.',
         ingredients: 'Almond Flour, Egg Whites, Sugar, Natural Flavorings, Cream.',
-        tags: ['Dessert', 'French', 'Gluten-Free']
+        tags: ['Dessert', 'French', 'Gluten-Free'],
+        category: 'Cookies' // <-- ADDED
     },
     {
         id: 4,
@@ -38,7 +42,8 @@ export const productsData = [
         tagline: 'A little bite of crimson luxury.',
         description: 'Rich, crimson-colored cake with a hint of cocoa, topped with a generous swirl of tangy cream cheese frosting. A classic treat for any occasion, baked to perfection right here in Pune.',
         ingredients: 'Flour, Cocoa Powder, Buttermilk, Sugar, Cream Cheese, Butter, Natural Colors.',
-        tags: ['Cupcake', 'Celebration', 'Cream Cheese']
+        tags: ['Cupcake', 'Celebration', 'Cream Cheese'],
+        category: 'Cakes' // <-- ADDED
     },
     {
         id: 5,
@@ -48,7 +53,8 @@ export const productsData = [
         tagline: 'The perfect crunch for your coffee break.',
         description: 'Crispy, Italian-style cookies baked twice for that signature crunch. Loaded with toasted almonds, these are ideal for dipping into a hot cup of coffee or a glass of dessert wine.',
         ingredients: 'Flour, Almonds, Sugar, Eggs, Natural Almond Extract, Baking Powder.',
-        tags: ['Cookie', 'Coffee', 'Italian']
+        tags: ['Cookie', 'Coffee', 'Italian'],
+        category: 'Cookies' // <-- ADDED
     },
     {
         id: 6,
@@ -58,7 +64,8 @@ export const productsData = [
         tagline: 'Creamy, dreamy, and utterly irresistible.',
         description: 'A creamy, classic New York-style cheesecake on a buttery graham cracker crust, topped with a fresh, slightly tart blueberry compote. A timeless dessert for sharing... or not.',
         ingredients: 'Cream Cheese, Graham Crackers, Butter, Sugar, Eggs, Fresh Blueberries, Lemon Zest.',
-        tags: ['Cake', 'Dessert', 'Cheesecake']
+        tags: ['Cake', 'Dessert', 'Cheesecake'],
+        category: 'Cakes' // <-- ADDED
     },
     {
         id: 7,
@@ -68,7 +75,8 @@ export const productsData = [
         tagline: 'A warm slice of homemade comfort.',
         description: 'Our Classic Apple Pie features a flaky, all-butter crust filled with thinly sliced apples, a hint of cinnamon, and a touch of nutmeg. Baked to golden perfection, it\'s a timeless treat that feels like a warm hug.',
         ingredients: 'Fresh Apples, All-Purpose Flour, Butter, Cinnamon, Nutmeg, Sugar, Lemon Juice.',
-        tags: ['Pie', 'Dessert', 'Classic']
+        tags: ['Pie', 'Dessert', 'Classic'],
+        category: 'Pies' // <-- ADDED
     },
     {
         id: 8,
@@ -78,6 +86,7 @@ export const productsData = [
         tagline: 'The perfect savory indulgence.',
         description: 'A rich and savory custard tart with bacon, Gruyère cheese, and onions in a buttery, flaky crust. Perfect for a light lunch or a brunch in Pune, served warm.',
         ingredients: 'Eggs, Heavy Cream, Bacon, Gruyère Cheese, Onions, Pie Crust, Spices.',
-        tags: ['Savory', 'French', 'Brunch']
+        tags: ['Savory', 'French', 'Brunch'],
+        category: 'Pies' // <-- ADDED
     }
 ];
