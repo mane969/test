@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './CheckoutPage.css';
+import BakeryLoader from '../components/BakeryLoader'; // Adjust path if needed
 
 const FREE_DELIVERY_THRESHOLD = 3000;
 
@@ -147,6 +148,7 @@ const validateStep1 = () => {
 
     return (
         <div className="main-content checkout-page-container">
+            {isProcessing && <BakeryLoader />}
             <div className="checkout-form-section">
                 <h1 className="checkout-title">Confirm Your Order</h1>
 
@@ -325,15 +327,14 @@ const validateStep1 = () => {
     )}
 
     <button
-        className={`pay-now-btn ${isProcessing ? 'processing' : ''}`}
-        onClick={handlePayment}
-        disabled={isProcessing}
-    >
-        <span className="btn-text">
-            {paymentMethod === 'cod' ? 'Confirm Order' : `Pay ₹${grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`}
-        </span>
-        <div className="spinner"></div>
-    </button>
+    className="pay-now-btn"
+    onClick={handlePayment}
+    disabled={isProcessing}
+>
+    <span className="btn-text">
+        {paymentMethod === 'cod' ? 'Confirm Order' : `Pay ₹${grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 })}`}
+    </span>
+</button>
 </div>
 
             </div>

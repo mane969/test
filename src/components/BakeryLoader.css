@@ -1,0 +1,65 @@
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 251, 245, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: fade-in 0.5s ease;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.loader-icon {
+    opacity: 0;
+    transform: scale(0.5);
+    animation: icon-pop-in 1.8s infinite ease-in-out;
+    color: #C68C4A;
+}
+
+/* Stagger the animation for each icon */
+.loader-icon.icon-2 {
+    animation-delay: 0.6s;
+}
+.loader-icon.icon-3 {
+    animation-delay: 1.2s;
+}
+
+@keyframes icon-pop-in {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(10px);
+    }
+    33% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    66% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-10px);
+    }
+}
+
+.loader-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #3E2E1F;
+}
