@@ -106,15 +106,28 @@ const ContactPage = () => {
                         {/* Add the onSubmit handler to the form */}
                         <form className="contact-form" onSubmit={handleSubmit}>
                             <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="e.g., Sanika Joshi"  /* <-- ADD THIS */
+                                />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="you@example.com"  /* <-- ADD THIS */
+                                />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="subject">Subject</label>
                                 <select id="subject" name="subject" value={formData.subject} onChange={handleChange}>
                                     <option>General Inquiry</option>
                                     <option>Custom Cake Order</option>
@@ -123,10 +136,17 @@ const ContactPage = () => {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="message">Message</label>
-                                <textarea id="message" name="message" rows="6" value={formData.message} onChange={handleChange} required></textarea>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    rows="6"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
+                                    placeholder="Write your message here..."  /* <-- ADD THIS */
+                                ></textarea>
                             </div>
-                            
+
                             <button type="submit" className="btn-primary" disabled={isSubmitting}>
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
                             </button>

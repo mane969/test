@@ -89,6 +89,7 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetailPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+<<<<<<< HEAD
                         <Route 
                 path="/checkout" 
                 element={
@@ -99,6 +100,9 @@ function App() {
                     />
                 } 
             />
+=======
+                        <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} />} />
+>>>>>>> 68d6a23 (Fixed Minor Image Changes)
                     </Routes>
                 </main>
                 <Footer />

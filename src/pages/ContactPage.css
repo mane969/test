@@ -271,6 +271,8 @@
     }
 
 /* --- User feedback messages --- */
+/* In ContactPage.css */
+
 .form-feedback {
     margin-top: 1.5rem;
     padding: 1rem;
@@ -279,7 +281,10 @@
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     width: 100%;
-    max-width: 500px;
+    max-width: 430px;
+    /* --- ADD THESE 2 LINES TO CENTER THE BOX --- */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .form-feedback.success {
