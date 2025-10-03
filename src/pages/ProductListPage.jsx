@@ -1,58 +1,80 @@
-﻿// src/pages/ProductListPage.jsx
-
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { productsData } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import ProductFilterSidebar from '../components/ProductFilterSidebar';
-import './ProductsPage.css'; // This file will be updated below
+import './ProductsPage.css';
 
-// Helper function to parse price string like "₹650" into a number
-const getPriceNumber = (price) => parseFloat(String(price).replace('₹', '').replace(/,/g, ''));
+const getPriceNumber = (price) => parseFloat(price);
 
 const ProductListPage = ({ onProductSelect }) => {
     const { categoryName } = useParams();
-
-    // --- STATE MANAGEMENT FOR FILTERS ---
+    const [allProducts, setAllProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [priceRange, setPriceRange] = useState([0, 3000]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [sortBy, setSortBy] = useState('default');
 
-    // Filter products by category once
-    const productsInCategory = useMemo(() =>
-        productsData.filter(
-            product => product.category.toLowerCase().replace(/\s+/g, '-') === categoryName
-        ),
-        [categoryName]
-    );
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('http://localhost:5001/api/products');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch products. Is the server running?');
+                }
+                const data = await response.json();
+                setAllProducts(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProducts();
+    }, []);
 
-    // Get a unique list of available tags from the products in this category
+    // --- THIS IS THE FIX ---
+    // The filtering logic is now more robust.
+    const productsInCategory = useMemo(() => {
+        if (!categoryName) return [];
+        return allProducts.filter(product => {
+            // Safety check: only filter if the product has a category field.
+            if (!product.category) {
+                return false;
+            }
+            // 1. Convert Firestore category to lowercase (e.g., "Custom Cakes" -> "custom cakes")
+            const formattedCategory = product.category.toLowerCase();
+            // 2. Convert URL parameter to match (e.g., "custom-cakes" -> "custom cakes")
+            const formattedURLCategory = categoryName.replace(/-/g, ' ');
+
+            // 3. Compare them
+            return formattedCategory === formattedURLCategory;
+        });
+    }, [allProducts, categoryName]);
+
     const availableTags = useMemo(() => {
         const tags = new Set();
         productsInCategory.forEach(product => {
-            product.tags.forEach(tag => tags.add(tag));
+            if (product.tags) {
+                product.tags.forEach(tag => tags.add(tag));
+            }
         });
         return Array.from(tags);
     }, [productsInCategory]);
 
-    // Apply filters and sorting
     const filteredAndSortedProducts = useMemo(() => {
         let filtered = [...productsInCategory];
-
-        // 1. Filter by Price
         filtered = filtered.filter(p => {
             const price = getPriceNumber(p.price);
             return price >= priceRange[0] && price <= priceRange[1];
         });
 
-        // 2. Filter by Tags
         if (selectedTags.length > 0) {
             filtered = filtered.filter(p =>
-                selectedTags.every(tag => p.tags.includes(tag))
+                p.tags && selectedTags.every(tag => p.tags.includes(tag))
             );
         }
 
-        // 3. Sort
         switch (sortBy) {
             case 'price-asc':
                 filtered.sort((a, b) => getPriceNumber(a.price) - getPriceNumber(b.price));
@@ -66,7 +88,6 @@ const ProductListPage = ({ onProductSelect }) => {
             default:
                 break;
         }
-
         return filtered;
     }, [productsInCategory, priceRange, selectedTags, sortBy]);
 
@@ -83,7 +104,14 @@ const ProductListPage = ({ onProductSelect }) => {
         setSortBy('default');
     };
 
-    const pageTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).replace(/-/g, ' ');
+    const pageTitle = categoryName ? categoryName.charAt(0).toUpperCase() + categoryName.slice(1).replace(/-/g, ' ') : "Products";
+
+    if (loading) {
+        return <div className="loading-message">Loading our delicious treats...</div>;
+    }
+    if (error) {
+        return <div className="error-message">Error: {error}</div>;
+    }
 
     return (
         <div className="main-content products-page-container">

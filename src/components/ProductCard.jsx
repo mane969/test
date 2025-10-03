@@ -9,10 +9,19 @@ const ProductCard = ({ product, onCardClick }) => {
         onCardClick(product);
     };
 
+    // --- UPDATED LOGIC ---
+    // 1. Check if product_images exists and is not an empty array.
+    // 2. If it is, use the first image.
+    // 3. If not, use a placeholder image URL to avoid crashing.
+    const imageUrl = product.product_images && product.product_images.length > 0
+        ? product.product_images[0]
+        : 'https://via.placeholder.com/300?text=No+Image';
+
     return (
         <div className="product-card" onClick={handleClick}>
             <div className="product-card-image-wrapper">
-                <img src={product.imageUrl} alt={product.name} className="product-card-image" />
+                {/* Use the new 'imageUrl' variable which is always safe */}
+                <img src={imageUrl} alt={product.name} className="product-card-image" />
             </div>
             <div className="product-card-info">
                 <h3 className="product-card-name">{product.name}</h3>
