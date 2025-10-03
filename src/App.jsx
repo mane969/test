@@ -30,6 +30,10 @@ function App() {
         }
     });
 
+    const clearCart = () => {
+        setCartItems([]);
+    };
+
     // Effect to save the cart to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -85,7 +89,16 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetailPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-                        <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} />} />
+                        <Route 
+                path="/checkout" 
+                element={
+                    <CheckoutPage 
+                        cartItems={cartItems} 
+                        // ✅ STEP 2: Make sure you are passing the function here
+                        clearCart={clearCart} 
+                    />
+                } 
+            />
                     </Routes>
                 </main>
                 <Footer />
