@@ -20,7 +20,7 @@ const ProductDetailPage = ({ product, onClose, onAddToCart }) => {
     };
 
     const handleAddToCart = () => {
-        onAddToCart(product, quantity);
+        onAddToCart(product, quantity); // This calls the function in App.jsx
         setShowNotification(true);
     };
 
@@ -30,12 +30,6 @@ const ProductDetailPage = ({ product, onClose, onAddToCart }) => {
     if (!product) {
         return null;
     }
-
-    // --- THIS IS THE FIX ---
-    // The code now correctly reads the URL from the '0' key inside the product_images map
-    const imageUrl = product.product_images && product.product_images['0']
-        ? product.product_images['0']
-        : 'https://placehold.co/600x600/C68C4A/FFF?text=Image+Unavailable';
 
     return ReactDOM.createPortal(
         <>
@@ -47,7 +41,7 @@ const ProductDetailPage = ({ product, onClose, onAddToCart }) => {
                     <div className="modal-body">
                         <div className="modal-image-area">
                             <img
-                                src={imageUrl}
+                                src={product.imageUrl}
                                 alt={product.name}
                                 className="modal-product-image"
                                 onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/600x600/C68C4A/FFF?text=Image+Unavailable"; }}
@@ -60,7 +54,7 @@ const ProductDetailPage = ({ product, onClose, onAddToCart }) => {
                         <div className="modal-info-area">
                             <h1 className="modal-product-name">{product.name}</h1>
                             <p className="modal-product-tagline">{product.tagline || 'A delightful treat for your senses.'}</p>
-                            <p className="modal-product-price">₹{product.price}</p>
+                            <p className="modal-product-price">{product.price}</p>
                             <p className="modal-product-description">{product.description}</p>
                             {product.ingredients && (
                                 <div className="modal-ingredients">

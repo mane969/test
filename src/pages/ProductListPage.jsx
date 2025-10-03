@@ -1,14 +1,12 @@
-﻿// src/pages/ProductListPage.jsx
+// src/pages/ProductListPage.jsx
 
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-// REMOVED: import { productsData } from '../data/products'; // Data is now fetched via API
 import ProductCard from '../components/ProductCard';
 import ProductFilterSidebar from '../components/ProductFilterSidebar';
 import './ProductsPage.css';
 
 // Helper function to parse price string like "₹650" into a number
-// NOTE: This assumes price is a string like "₹2000" as shown in your screenshot.
 const getPriceNumber = (price) => {
     if (typeof price === 'number') return price;
     if (typeof price === 'string') {
@@ -20,32 +18,29 @@ const getPriceNumber = (price) => {
 const ProductListPage = ({ onProductSelect }) => {
     const { categoryName } = useParams();
 
-    // --- NEW STATE FOR API DATA ---
+    // State for API data
     const [productsData, setProductsData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // --- STATE MANAGEMENT FOR FILTERS ---
+    // State for filters
     const [priceRange, setPriceRange] = useState([0, 3000]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [sortBy, setSortBy] = useState('default');
 
-    // NEW: Function to fetch data from the backend
+    // Function to fetch data from the backend
     const fetchProducts = useCallback(async () => {
         setIsLoading(true);
         setError(null);
         try {
-            // Using a relative path works if you set up the 'proxy' in package.json
-            // If you don't use a proxy, use the full path: 'http://localhost:5001/api/products'
+            // Using a relative path which works if you set up 'proxy' in package.json
             const response = await fetch('/api/products'); 
 
             if (!response.ok) {
-                // If the server returns a 500 status (e.g., Firebase error)
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
             
-            // Only accept an array of products
             if (Array.isArray(data)) {
                 setProductsData(data);
             } else {
@@ -65,14 +60,8 @@ const ProductListPage = ({ onProductSelect }) => {
         fetchProducts();
     }, [fetchProducts]);
 
-
-    // ----------------------------------------------------
-    // FILTERING AND SORTING LOGIC (Using fetched productsData)
-    // ----------------------------------------------------
-
-    // Filter products by category once
+    // Filter products by category
     const productsInCategory = useMemo(() => {
-        // Create a slug from the category name from Firestore data for comparison
         const categorySlug = (category) => 
             category ? String(category).toLowerCase().replace(/\s+/g, '-') : '';
 
@@ -81,12 +70,10 @@ const ProductListPage = ({ onProductSelect }) => {
         );
     }, [categoryName, productsData]);
 
-
     // Get a unique list of available tags
     const availableTags = useMemo(() => {
         const tags = new Set();
         productsInCategory.forEach(product => {
-            // Check if product.tags is present and an array (based on your screenshot)
             if (Array.isArray(product.tags)) { 
                 product.tags.forEach(tag => tags.add(tag));
             }
@@ -94,25 +81,23 @@ const ProductListPage = ({ onProductSelect }) => {
         return Array.from(tags);
     }, [productsInCategory]);
 
-    // Apply filters and sorting
     const filteredAndSortedProducts = useMemo(() => {
         let filtered = [...productsInCategory];
-
-        // 1. Filter by Price
+        
+        // Filter by price
         filtered = filtered.filter(p => {
             const price = getPriceNumber(p.price);
             return price >= priceRange[0] && price <= priceRange[1];
         });
 
-        // 2. Filter by Tags
+        // Filter by tags
         if (selectedTags.length > 0) {
             filtered = filtered.filter(p =>
-                // Ensure the product has tags and that ALL selectedTags are present
                 Array.isArray(p.tags) && selectedTags.every(tag => p.tags.includes(tag))
             );
         }
 
-        // 3. Sort (Logic remains the same)
+        // Sort
         switch (sortBy) {
             case 'price-asc':
                 filtered.sort((a, b) => getPriceNumber(a.price) - getPriceNumber(b.price));
@@ -126,13 +111,9 @@ const ProductListPage = ({ onProductSelect }) => {
             default:
                 break;
         }
-
         return filtered;
     }, [productsInCategory, priceRange, selectedTags, sortBy]);
 
-    // ----------------------------------------------------
-    // HANDLERS AND RENDER
-    // ----------------------------------------------------
 
     const handleTagChange = (event) => {
         const { value, checked } = event.target;
@@ -147,7 +128,7 @@ const ProductListPage = ({ onProductSelect }) => {
         setSortBy('default');
     };
 
-    const pageTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).replace(/-/g, ' ');
+    const pageTitle = categoryName ? categoryName.charAt(0).toUpperCase() + categoryName.slice(1).replace(/-/g, ' ') : "Products";
 
     // Render logic for Loading and Errors
     if (isLoading) {
@@ -175,7 +156,6 @@ const ProductListPage = ({ onProductSelect }) => {
                 <div className="products-page-grid">
                     {filteredAndSortedProducts.length > 0 ? (
                         filteredAndSortedProducts.map(product => (
-                            // product.id is provided by the server
                             <ProductCard
                                 key={product.id}
                                 product={product}
