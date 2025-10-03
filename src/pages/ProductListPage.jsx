@@ -1,36 +1,95 @@
 ﻿// src/pages/ProductListPage.jsx
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { productsData } from '../data/products';
+// REMOVED: import { productsData } from '../data/products'; // Data is now fetched via API
 import ProductCard from '../components/ProductCard';
 import ProductFilterSidebar from '../components/ProductFilterSidebar';
-import './ProductsPage.css'; // This file will be updated below
+import './ProductsPage.css';
 
 // Helper function to parse price string like "₹650" into a number
-const getPriceNumber = (price) => parseFloat(String(price).replace('₹', '').replace(/,/g, ''));
+// NOTE: This assumes price is a string like "₹2000" as shown in your screenshot.
+const getPriceNumber = (price) => {
+    if (typeof price === 'number') return price;
+    if (typeof price === 'string') {
+        return parseFloat(price.replace('₹', '').replace(/,/g, ''));
+    }
+    return 0; // Default if price format is unexpected
+};
 
 const ProductListPage = ({ onProductSelect }) => {
     const { categoryName } = useParams();
+
+    // --- NEW STATE FOR API DATA ---
+    const [productsData, setProductsData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // --- STATE MANAGEMENT FOR FILTERS ---
     const [priceRange, setPriceRange] = useState([0, 3000]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [sortBy, setSortBy] = useState('default');
 
-    // Filter products by category once
-    const productsInCategory = useMemo(() =>
-        productsData.filter(
-            product => product.category.toLowerCase().replace(/\s+/g, '-') === categoryName
-        ),
-        [categoryName]
-    );
+    // NEW: Function to fetch data from the backend
+    const fetchProducts = useCallback(async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+            // Using a relative path works if you set up the 'proxy' in package.json
+            // If you don't use a proxy, use the full path: 'http://localhost:5001/api/products'
+            const response = await fetch('/api/products'); 
 
-    // Get a unique list of available tags from the products in this category
+            if (!response.ok) {
+                // If the server returns a 500 status (e.g., Firebase error)
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            
+            // Only accept an array of products
+            if (Array.isArray(data)) {
+                setProductsData(data);
+            } else {
+                throw new Error("API returned unexpected data format.");
+            }
+
+        } catch (err) {
+            console.error("Failed to fetch products:", err);
+            setError(`Could not load products: ${err.message}. Check if your backend server (port 5001) is running.`);
+        } finally {
+            setIsLoading(false);
+        }
+    }, []);
+
+    // Fetch products when the component mounts
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+
+
+    // ----------------------------------------------------
+    // FILTERING AND SORTING LOGIC (Using fetched productsData)
+    // ----------------------------------------------------
+
+    // Filter products by category once
+    const productsInCategory = useMemo(() => {
+        // Create a slug from the category name from Firestore data for comparison
+        const categorySlug = (category) => 
+            category ? String(category).toLowerCase().replace(/\s+/g, '-') : '';
+
+        return productsData.filter(
+            product => product.category && categorySlug(product.category) === categoryName
+        );
+    }, [categoryName, productsData]);
+
+
+    // Get a unique list of available tags
     const availableTags = useMemo(() => {
         const tags = new Set();
         productsInCategory.forEach(product => {
-            product.tags.forEach(tag => tags.add(tag));
+            // Check if product.tags is present and an array (based on your screenshot)
+            if (Array.isArray(product.tags)) { 
+                product.tags.forEach(tag => tags.add(tag));
+            }
         });
         return Array.from(tags);
     }, [productsInCategory]);
@@ -48,11 +107,12 @@ const ProductListPage = ({ onProductSelect }) => {
         // 2. Filter by Tags
         if (selectedTags.length > 0) {
             filtered = filtered.filter(p =>
-                selectedTags.every(tag => p.tags.includes(tag))
+                // Ensure the product has tags and that ALL selectedTags are present
+                Array.isArray(p.tags) && selectedTags.every(tag => p.tags.includes(tag))
             );
         }
 
-        // 3. Sort
+        // 3. Sort (Logic remains the same)
         switch (sortBy) {
             case 'price-asc':
                 filtered.sort((a, b) => getPriceNumber(a.price) - getPriceNumber(b.price));
@@ -70,6 +130,10 @@ const ProductListPage = ({ onProductSelect }) => {
         return filtered;
     }, [productsInCategory, priceRange, selectedTags, sortBy]);
 
+    // ----------------------------------------------------
+    // HANDLERS AND RENDER
+    // ----------------------------------------------------
+
     const handleTagChange = (event) => {
         const { value, checked } = event.target;
         setSelectedTags(prev =>
@@ -84,6 +148,15 @@ const ProductListPage = ({ onProductSelect }) => {
     };
 
     const pageTitle = categoryName.charAt(0).toUpperCase() + categoryName.slice(1).replace(/-/g, ' ');
+
+    // Render logic for Loading and Errors
+    if (isLoading) {
+        return <div className="main-content"><h2 className="loading-message">Loading Delicious Treats... 🍰</h2></div>;
+    }
+
+    if (error) {
+        return <div className="main-content"><h2 className="error-message">Connection Error!</h2><p>{error}</p></div>;
+    }
 
     return (
         <div className="main-content products-page-container">
@@ -102,6 +175,7 @@ const ProductListPage = ({ onProductSelect }) => {
                 <div className="products-page-grid">
                     {filteredAndSortedProducts.length > 0 ? (
                         filteredAndSortedProducts.map(product => (
+                            // product.id is provided by the server
                             <ProductCard
                                 key={product.id}
                                 product={product}
