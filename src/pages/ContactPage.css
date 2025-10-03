@@ -269,3 +269,25 @@
     .btn-primary:hover::before {
         opacity: 1;
     }
+
+/* --- User feedback messages --- */
+.form-feedback {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-feedback.success {
+    background-color: #e0f8e9;
+    color: #276c42;
+}
+
+.form-feedback.error {
+    background-color: #fde2e2;
+    color: #8c2a2a;
+}
