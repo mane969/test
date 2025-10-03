@@ -30,10 +30,6 @@ function App() {
         }
     });
 
-    const clearCart = () => {
-        setCartItems([]);
-    };
-
     // Effect to save the cart to localStorage whenever it changes
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
@@ -89,20 +85,10 @@ function App() {
                         <Route path="/product/:id" element={<ProductDetailPage />} />
                         <Route path="/contact" element={<ContactPage />} />
                         <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
-<<<<<<< HEAD
-                        <Route 
-                path="/checkout" 
-                element={
-                    <CheckoutPage 
-                        cartItems={cartItems} 
-                        // ✅ STEP 2: Make sure you are passing the function here
-                        clearCart={clearCart} 
-                    />
-                } 
-            />
-=======
+
+                        {/* --- THIS IS THE CORRECTED, CONFLICT-FREE LINE --- */}
                         <Route path="/checkout" element={<CheckoutPage cartItems={cartItems} setCartItems={setCartItems} />} />
->>>>>>> 68d6a23 (Fixed Minor Image Changes)
+
                     </Routes>
                 </main>
                 <Footer />
